@@ -28,11 +28,13 @@
     let ktop = 50;
     let kwidth = 400;
     let kheight = 550;
+    let isSeikai;
+    isSeikai = false;
 
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
     ctx.font = "20px 'Your Web Font'";
-    ctx.fillText("メニューv06", 70, 60);
+    ctx.fillText("メニューv07", 70, 60);
     });
     document.fonts.ready.then(() => {
     ctx.font = "sans-serif 20px";
@@ -96,13 +98,13 @@
     }
 
     function seikai() {
-        if (isSeikai == fals) return
+        if (isSeikai == true) return
         x1 = Math.floor(kleft+kwidth/2);
         y1 = Math.floor(ktop+kheight/2);
         ctx.fillStyle = 'red';
         ctx.arc(x1, y1, 100, 0, Math.PI * 2);
         mode = 91;
-        isSeikai = true;
+        isSeikai = false;
     }
 
     // メニューを選択
@@ -128,7 +130,7 @@
 
     canvas.addEventListener("touchmove",function(e){
         e.preventDefault();
-        console.log("touchmove.");
+        if (isSeikai == true) {return;}
         // 解答欄をクリア
         kaitouran_clear();
         // 外枠の色と太さを設定
@@ -141,14 +143,17 @@
         for (let i = 0; i < touches.length; i++) {
             x1 = touches[i].pageX;
             y1 = touches[i].pageY;
-            if (kleft+50<x1 && x1<kleft+kwidth-50 && 
-                ktop+50<y1 && y1<ktop+kheight-50){
+            if (kleft+50<x1 && x1<kleft+kwidth && 
+                ktop+50<y1 && y1<ktop+kheight){
                 if (mode==91){return} 
                 yubicnt += 1;
                 ctx.fillStyle = 'skyblue'
                 zx=-60;
                 zy=-60;
                 ctx.fillRect(touches[i].pageX+zx, touches[i].pageY+zy,50,50); 
+                ctx.strokeStyle = 'black';
+                ctx.lineWidth = 1;
+                ctx.strokeRect(touches[i].pageX+zx, touches[i].pageY+zy,50,50);
             }
         }
 
@@ -165,6 +170,7 @@
                 }
             }
             if (yubicnt == yubikotae) {
+                isSeikai = true;
                 seikai();
             } else {
                 batu();
