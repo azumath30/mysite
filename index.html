@@ -30,12 +30,15 @@
     let kheight = 550;
     let isSeikai;
     isSeikai = false;
+    let touchPoints = [];
     let sikakus = [];
+    let sikakus_ima = [];
+    let sikakus_end = [];
 
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
     ctx.font = "20px 'Your Web Font'";
-    ctx.fillText("メニューv08", 70, 60);
+    ctx.fillText("メニューv10", 70, 60);
     });
     document.fonts.ready.then(() => {
     ctx.font = "sans-serif 20px";
@@ -144,18 +147,15 @@
     },{passive: false});
 
     // タッチ数を数える
-    canvas.addEventListener("touchmove", function(e){
+    canvas.addEventListener("touchstart", function(e){
         e.preventDefault();
         if (isSeikai == true) {return;}
-        // 解答欄をクリア
-        kaitouran_clear();
-
-        const touches = e.changedTouches;
+        const touchPoints = e.touches;
         let yubicnt=0;
         sikakus = [];
-        for (let i = 0; i < touches.length; i++) {
-            x1 = touches[i].pageX;
-            y1 = touches[i].pageY;
+        for (let i = 0; i < touchPoints.length; i++) {
+            x1 = touchPoints[i].pageX;
+            y1 = touchPoints[i].pageY;
             if (kleft+50<x1 && x1<kleft+kwidth && 
                 ktop+50<y1 && y1<ktop+kheight){
                 if (mode==91){return} 
@@ -164,29 +164,66 @@
             }
         }
         sikaku_drwaw(sikakus);
-
         if (yubicnt==yubikotae) {
+            isSeikai = true;
+            seikai();
+        } else {
+            batu();
+        }
+    },{passive: false});
+    canvas.addEventListener("touchmove", function(e){
+        e.preventDefault();
+        if (isSeikai == true) {return;}
+        const touchPoints = e.touches;
+        let yubicnt=0;
         sikakus = [];
-        setTimeout(() => {
-            const touches = e.changedTouches;
-            let yubicnt=0;
-            for (let i = 0; i < touches.length; i++) {
-                x1 = touches[i].pageX;
-                y1 = touches[i].pageY;
-                if (kleft<x1 && x1<kleft+kwidth && 
-                    ktop<y1 && y1<ktop+kheight) {
-                    yubicnt += 1;
-                    sikakus.push([x1,y1]);
-                }
+        for (let i = 0; i < touchPoints.length; i++) {
+            x1 = touchPoints[i].pageX;
+            y1 = touchPoints[i].pageY;
+            if (kleft+50<x1 && x1<kleft+kwidth && 
+                ktop+50<y1 && y1<ktop+kheight){
+                if (mode==91){return} 
+                yubicnt += 1;
+                sikakus.push([x1,y1]);
             }
-            sikaku_drwaw(sikakus);
-            if (yubicnt == yubikotae) {
-                isSeikai = true;
-                seikai();
-            } else {
-                batu();
+        }
+        sikaku_drwaw(sikakus);
+        if (yubicnt==yubikotae) {
+            isSeikai = true;
+            seikai();
+        } else {
+            batu();
+        }
+    },{passive: false});
+    canvas.addEventListener("touchend", function(e) {
+        e.preventDefault();
+        if (isSeikai == true) {return;}
+        // 残りのタッチポイントから消去対象を特定
+        const touches = e.changedTouches;
+        const remainingTouches = [];
+        for (let i = 0; i < touchPoints.length; i++) {
+            if (touches[0].identifier !== touchPoints[i].identifier) {
+                remainingTouches.push(touchPoints[i]);
             }
-        }, 200);
+        }       
+        let yubicnt=0;
+        sikakus = [];
+        remainingTouches. array.forEach(element => {
+            x1 = element.clientX
+            y1 = element.clientY
+            if (kleft+50<x1 && x1<kleft+kwidth && 
+            ktop+50<y1 && y1<ktop+kheight){
+                if (mode==91){return} 
+                yubicnt += 1;
+                sikakus.push([x1,y1]);
+            }
+        });
+        sikaku_drwaw(sikakus);
+        if (yubicnt==yubikotae) {
+            isSeikai = true;
+            seikai();
+        } else {
+            batu();
         }
     },{passive: false});
 
