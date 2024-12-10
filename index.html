@@ -30,11 +30,12 @@
     let kheight = 550;
     let isSeikai;
     isSeikai = false;
+    let sikakus = [];
 
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
     ctx.font = "20px 'Your Web Font'";
-    ctx.fillText("メニューv07", 70, 60);
+    ctx.fillText("メニューv08", 70, 60);
     });
     document.fonts.ready.then(() => {
     ctx.font = "sans-serif 20px";
@@ -107,6 +108,20 @@
         isSeikai = false;
     }
 
+    function sikaku_drwaw(sikakus){
+        sikakus.forEach(element => {
+            x1 = element[0];
+            y1 = element[1]; 
+            ctx.fillStyle = 'skyblue'
+            zx=-60;
+            zy=-60;
+            ctx.fillRect(touches[i].pageX+zx, touches[i].pageY+zy,50,50); 
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(touches[i].pageX+zx, touches[i].pageY+zy,50,50);
+        });
+    }
+
     // メニューを選択
     canvas.addEventListener("click", function(e){ //<-touchstart
         if (mode>0) {return}
@@ -128,15 +143,12 @@
         }
     },{passive: false});
 
-    canvas.addEventListener("touchmove",function(e){
+    // タッチ数を数える
+    canvas.addEventListener("touchmove", function(e){
         e.preventDefault();
         if (isSeikai == true) {return;}
         // 解答欄をクリア
         kaitouran_clear();
-        // 外枠の色と太さを設定
-        //ctx2.strokeStyle = 'black';
-        //ctx2.lineWidth = 1;
-        //ctx2.strokeRect(0,0,  canvas.width-30, canvas.height-30);
 
         const touches = e.changedTouches;
         let yubicnt=0;
@@ -147,17 +159,13 @@
                 ktop+50<y1 && y1<ktop+kheight){
                 if (mode==91){return} 
                 yubicnt += 1;
-                ctx.fillStyle = 'skyblue'
-                zx=-60;
-                zy=-60;
-                ctx.fillRect(touches[i].pageX+zx, touches[i].pageY+zy,50,50); 
-                ctx.strokeStyle = 'black';
-                ctx.lineWidth = 1;
-                ctx.strokeRect(touches[i].pageX+zx, touches[i].pageY+zy,50,50);
+                sikakus.push([x1,y1]);
             }
         }
+        sikaku_drwaw(sikakus);
 
         if (yubicnt==yubikotae) {
+        sikakus = [];
         setTimeout(() => {
             const touches = e.changedTouches;
             let yubicnt=0;
@@ -165,10 +173,12 @@
                 x1 = touches[i].pageX;
                 y1 = touches[i].pageY;
                 if (kleft<x1 && x1<kleft+kwidth && 
-                    ktop<y1 && y1<ktop+kheight){
+                    ktop<y1 && y1<ktop+kheight) {
                     yubicnt += 1;
+                    sikakus.push([x1,y1]);
                 }
             }
+            sikaku_drwaw(sikakus);
             if (yubicnt == yubikotae) {
                 isSeikai = true;
                 seikai();
