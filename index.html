@@ -90,7 +90,7 @@
         ctx.clearRect(kleft-20, ktop-20, kwidth+40, kheight+40);
         // 四角塗りつぶし
         // set transparency value
-        ctx.globalAlpha = 0.3;
+        ctx.globalAlpha = 0.1;
         ctx.fillStyle = '#9bea33';
         ctx.fillRect(kleft, ktop, kwidth, kheight);
 
@@ -107,6 +107,7 @@
         y1 = Math.floor(ktop+kheight/2);
         ctx.fillStyle = 'red';
         ctx.arc(x1, y1, 100, 0, Math.PI * 2);
+        ctx.fill();
         mode = 91;
         isSeikai = false;
     }
@@ -208,7 +209,7 @@
         }       
         let yubicnt=0;
         sikakus = [];
-        remainingTouches. array.forEach(element => {
+        remainingTouches.forEach(element => {
             x1 = element.clientX
             y1 = element.clientY
             if (kleft+50<x1 && x1<kleft+kwidth && 
