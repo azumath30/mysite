@@ -102,6 +102,7 @@
         timeid = setTimeout(() => {
             keikatime = new Date() - stime;
             keikatime_h = Math.floor(keikatime/1000).toFixed(1);
+            ctx.clearRect(430,130,80,25);
             ctx.font = "20px";
             ctx.fillStyle = 'black';
             ctx.fillText(keikatime_h, 430, 130);
