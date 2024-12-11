@@ -72,8 +72,7 @@
         let rectw = 50;
         ctx.font = "96px";
         ctx.fillText("5  =",100,300);
-        ctx.fillText("0.1", 400, 120);
-        //ctx.fillText("+",450,300);
+        ctx.fillText("+",450,300);
         for (i=0;i<leftn;i++){
             // 四角塗りつぶし
             ctx.fillStyle = 'skyblue';
@@ -88,20 +87,25 @@
         ctx.font = "20px";
         ctx.fillStyle = 'black';
         ctx.fillText("0.0", 430, 130);
-        timehyouji();
+        timehyouji(0);
         // 解答欄をクリア
         kaitouran_clear();
     }
 
-    function timehyouji() {
-        if (keikatime_h>10) {return}
+    function timehyouji(keikatime_h) {
+        if (keikatime_h>10) {
+            if (timeid) {
+                clearTimeout(timeid);
+             }
+            return;
+        }
         timeid = setTimeout(() => {
             keikatime = new Date() - stime;
             keikatime_h = Math.floor(keikatime/1000).toFixed(1);
             ctx.font = "20px";
             ctx.fillStyle = 'black';
             ctx.fillText(keikatime_h, 430, 130);
-            timehyouji(); 
+            timehyouji(keikatime_h); 
         }, 100);
     }
 
@@ -130,7 +134,9 @@
         ctx.arc(x1, y1, 100, 0, Math.PI * 2);
         ctx.fill();
         mode = 91;
-        clearTimeout(timeid);
+        if (timeid) {
+            clearTimeout(timeid);
+        }
         isSeikai = false;
     }
     
