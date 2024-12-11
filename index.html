@@ -35,6 +35,7 @@
     let sikakus_ima = [];
     let sikakus_end = [];
     let stime;
+    let stoptimes = [];
     let keikatime_h;
     let pushtime;
     // フォントの読み込み完了後に実行
@@ -86,29 +87,28 @@
         stime = new Date();
         ctx.font = "20px";
         ctx.fillStyle = 'black';
-        ctx.fillText("0.0", 430, 130);
-        timehyouji(0);
+
         // 解答欄をクリア
         kaitouran_clear();
     }
 
-    function timehyouji(keikatime_h) {
-        if (keikatime_h>10) {
-            if (timeid) {
-                clearTimeout(timeid);
-             }
-            return;
-        }
-        timeid = setTimeout(() => {
-            keikatime = new Date() - stime;
-            keikatime_h = (keikatime/1000).toFixed(1);
-            ctx.clearRect(430,130-25,80,25);
-            ctx.font = "20px";
-            ctx.fillStyle = 'black';
-            ctx.fillText(keikatime_h, 430, 130);
-            timehyouji(keikatime_h); 
-        }, 100);
-    }
+    // function timehyouji(keikatime_h) {
+    //     if (keikatime_h>10) {
+    //         if (timeid) {
+    //             clearTimeout(timeid);
+    //          }
+    //         return;
+    //     }
+    //     timeid = setTimeout(() => {
+    //         keikatime = new Date() - stime;
+    //         keikatime_h = (keikatime/1000).toFixed(1);
+    //         ctx.clearRect(430,130-25,80,25);
+    //         ctx.font = "20px";
+    //         ctx.fillStyle = 'black';
+    //         ctx.fillText(keikatime_h, 430, 130);
+    //         timehyouji(keikatime_h); 
+    //     }, 100);
+    // }
 
     function kaitouran_clear() {
         // 解答欄
@@ -133,15 +133,27 @@
         y1 = Math.floor(ktop+kheight/2);
         ctx.fillStyle = 'red';
         ctx.arc(x1, y1, 100, 0, Math.PI * 2);
-        ctx.fill();
         mode = 91;
-        // 時間を止める
-        clearTimeout(timeid);
-        
+
         isSeikai = false;
     }
     
     function batu() {
+        //if (isSeikai == true) return
+        x1 = Math.floor(kleft+kwidth/2);
+        y1 = Math.floor(ktop+kheight/2);
+        // Set the line style
+        ctx.strokeStyle = 'blue';
+        ctx.lineWidth = 10;
+        ctx.beginPath();
+        ctx.moveTo(kleft+100,ktop+100);
+        ctx.lineTo(kleft+300,ktop+300);
+        ctx.stroke();
+
+        mode = 91;
+        isSeikai = false;
+        stoptimes = [];
+        stime = new Date();
         return;
     }
 
@@ -185,6 +197,7 @@
     canvas.addEventListener("touchstart", function(e){
         e.preventDefault();
         if (isSeikai == true) {return;}
+        stoptimes.push(new Date() - stime);
         const touchPoints = e.touches;
         let yubicnt=0;
         sikakus = [];
@@ -199,7 +212,7 @@
             }
         }
         sikaku_drwaw(sikakus);
-        if (yubicnt==yubikotae) {
+        if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
             isSeikai = true;
             seikai();
         } else {
@@ -223,7 +236,7 @@
             }
         }
         sikaku_drwaw(sikakus);
-        if (yubicnt==yubikotae) {
+        if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
             isSeikai = true;
             seikai();
         } else {
@@ -254,7 +267,7 @@
             }
         });
         sikaku_drwaw(sikakus);
-        if (yubicnt==yubikotae) {
+        if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
             isSeikai = true;
             seikai();
         } else {
