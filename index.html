@@ -40,7 +40,7 @@
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
     ctx.font = "20px 'sans-serif'";
-    ctx.fillText("メニューv12", 70, 60);
+    ctx.fillText("メニューv13", 70, 60);
     });
     document.fonts.ready.then(() => {
     ctx.font = "sans-serif 20px";
@@ -72,6 +72,7 @@
         let rectw = 50;
         ctx.font = "96px";
         ctx.fillText("5  =",100,300);
+        ctx.fillText("0.1", 400, 120);
         ctx.fillText("+",450,300);
         for (i=0;i<leftn;i++){
             // 四角塗りつぶし
@@ -82,11 +83,12 @@
             ctx.lineWidth = 1;
             ctx.strokeRect(rectl+rectw*i, rectt, rectw, rectw);
         }
-        
+        // 解答欄をクリア
         kaitouran_clear();
         // 時計スタート
         stime = new Date();
         ctx.font = "96px";
+        ctx.fillStyle = 'black';
         ctx.fillText("0.0", 400, 120);
         timehyouji();
     }
