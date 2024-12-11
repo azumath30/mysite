@@ -73,7 +73,7 @@
         ctx.font = "96px";
         ctx.fillText("5  =",100,300);
         ctx.fillText("0.1", 400, 120);
-        ctx.fillText("+",450,300);
+        //ctx.fillText("+",450,300);
         for (i=0;i<leftn;i++){
             // 四角塗りつぶし
             ctx.fillStyle = 'skyblue';
@@ -83,14 +83,14 @@
             ctx.lineWidth = 1;
             ctx.strokeRect(rectl+rectw*i, rectt, rectw, rectw);
         }
-        // 解答欄をクリア
-        kaitouran_clear();
         // 時計スタート
         stime = new Date();
-        ctx.font = "96px";
+        ctx.font = "20px";
         ctx.fillStyle = 'black';
-        ctx.fillText("0.0", 400, 120);
+        ctx.fillText("0.0", 430, 130);
         timehyouji();
+        // 解答欄をクリア
+        kaitouran_clear();
     }
 
     function timehyouji() {
@@ -98,9 +98,9 @@
         timeid = setTimeout(() => {
             keikatime = new Date() - stime;
             keikatime_h = Math.floor(keikatime/1000).toFixed(1);
-            ctx.font = "96px";
+            ctx.font = "20px";
             ctx.fillStyle = 'black';
-            ctx.fillText(keikatime_h, 400, 120);
+            ctx.fillText(keikatime_h, 430, 130);
             timehyouji(); 
         }, 100);
     }
