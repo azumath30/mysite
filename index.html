@@ -40,7 +40,7 @@
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
     ctx.font = "20px 'sans-serif'";
-    ctx.fillText("メニューv11", 70, 60);
+    ctx.fillText("メニューv12", 70, 60);
     });
     document.fonts.ready.then(() => {
     ctx.font = "sans-serif 20px";
@@ -94,7 +94,8 @@
         timeid = setTimeout(() => {
             keikatime = new Date() - stime;
             keikatime_h = Math.floor(keikatime/1000).toFixed(1);
-            ctx.fillText(keikatime_h,400,150)
+            ctx.fillStyle = 'black';
+            ctx.fillText(keikatime_h, 400, 150)
             timehyouji(); 
         }, 100);
     }
@@ -124,6 +125,7 @@
         ctx.arc(x1, y1, 100, 0, Math.PI * 2);
         ctx.fill();
         mode = 91;
+        clearTimeout(timeid);
         isSeikai = false;
     }
     
