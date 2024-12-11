@@ -96,11 +96,12 @@
     }
 
     function redraw_sikaku_plus(sikakus) {
-        clearRect(50,200,440,400);
+        ctx.clearRect(50,200,440,400);
         ctx.font = "96px";
+        ctx.fillStyle = 'black';
         ctx.fillText("5  =",100,300);
         ctx.fillText("+",450,300);
-        kosu = leftn+sikakus.length
+        kosu = leftn + sikakus.length
         for (i=0;i<kosu;i++){
             // 四角塗りつぶし
             if (i<=5) {
@@ -111,11 +112,11 @@
             } 
             xi = i % 5;
             yi = Math.floor(i/5);
-            ctx.fillRect(rectl+rectw*xi, rectt+rectw*yi+70, rectw, rectw);
+            ctx.fillRect(rectl+rectw*xi, rectt+(rectw+70)*yi, rectw, rectw);
             // 四角縁取り
             ctx.strokeStyle = 'black';
             ctx.lineWidth = 1;
-            ctx.strokeRect(rectl+rectw*xi, rectt+rectw*yi+70, rectw, rectw);
+            ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+70)*yi, rectw, rectw);
         }
         setTimeout(() => {
             if (5-leftn == yubicnt) {
@@ -226,12 +227,6 @@
     },{passive: false});
 
     // タッチ数を数える
-    function touchkankaku(stoptimes){
-        cnt = 0;
-        shokai = stoptimes[0];
-        for (i=0;i<stoptimes.length;){}
-   
-    }
     canvas.addEventListener("touchstart", function(e){
         e.preventDefault();
         if (isSeikai == true) {return;}
