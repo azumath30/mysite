@@ -101,7 +101,7 @@
         ctx.fillStyle = 'black';
         ctx.fillText("5  =",100,300);
         ctx.fillText("+",450,300);
-        kosu = leftn + sikakus.length
+        let kosu = leftn + sikakus.length
         for (i=0;i<kosu;i++){
             // 四角塗りつぶし
             if (i<=5) {
@@ -112,6 +112,7 @@
             } 
             xi = i % 5;
             yi = Math.floor(i/5);
+            // 四角形
             ctx.fillRect(rectl+rectw*xi, rectt+(rectw+70)*yi, rectw, rectw);
             // 四角縁取り
             ctx.strokeStyle = 'black';
@@ -190,7 +191,7 @@
         return;
     }
 
-    function sikaku_drwaw(sikakus){
+    function sikaku_draw(sikakus){
         kaitouran_clear();
         sikakus.forEach(element => {
             x1 = element[0];
@@ -244,7 +245,7 @@
                 sikakus.push([x1,y1]);
             }
         }
-        sikaku_drwaw(sikakus);
+        sikaku_draw(sikakus);
         redraw_sikaku_plus(sikakus);
         // if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
         //     isSeikai = true;
@@ -271,7 +272,7 @@
                 sikakus.push([x1,y1]);
             }
         }
-        sikaku_drwaw(sikakus);
+        sikaku_draw(sikakus);
         redraw_sikaku_plus(sikakus);
         // if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
         //     isSeikai = true;
@@ -303,7 +304,7 @@
                 sikakus.push([x1,y1]);
             }
         });
-        sikaku_drwaw(sikakus);
+        sikaku_draw(sikakus);
         redraw_sikaku_plus(sikakus);
         // if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
         //     isSeikai = true;
