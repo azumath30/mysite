@@ -34,7 +34,9 @@
     let sikakus = [];
     let sikakus_ima = [];
     let sikakus_end = [];
-
+    let stime;
+    let keikatime;
+    let pushtime;
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
     ctx.font = "20px 'Your Web Font'";
@@ -82,6 +84,18 @@
         }
         
         kaitouran_clear();
+        // 時計スタート
+        stime = new Date();
+    }
+
+    function timehyouji() {
+        if (keikatime_h>10) {return}
+        timeid = setTimeout(() => {
+            keikatime = new Date() - stime;
+            keikatime_h = Math.floor(keikatime/1000).toFixed(1);
+            ctx.fillText(keikatime_h,400,150)
+            timehyouji(); 
+        }, 100);
     }
 
     function kaitouran_clear() {
