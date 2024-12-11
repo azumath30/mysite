@@ -86,7 +86,8 @@
         kaitouran_clear();
         // 時計スタート
         stime = new Date();
-        ctx.fillText("0.0", 400, 150);
+        ctx.font = "96px";
+        ctx.fillText("0.0", 400, 120);
         timehyouji();
     }
 
@@ -95,8 +96,9 @@
         timeid = setTimeout(() => {
             keikatime = new Date() - stime;
             keikatime_h = Math.floor(keikatime/1000).toFixed(1);
+            ctx.font = "96px";
             ctx.fillStyle = 'black';
-            ctx.fillText(keikatime_h, 400, 150);
+            ctx.fillText(keikatime_h, 400, 120);
             timehyouji(); 
         }, 100);
     }
