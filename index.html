@@ -19,10 +19,13 @@
     // 矩形を描画 (x, y, 幅, 高さ)
     ctx.strokeRect(0, 0, canvas.width-30, canvas.height-30);
 
+    // 四角図形
+    let leftn;
     // menu
     let r1 = 50;
     let mode;
-    let yubikotae;
+    let yubikotae; // 指答え
+    let yubicnt; // 指カウント
     // 解答欄
     let kleft = 550;
     let ktop = 50;
@@ -92,6 +95,35 @@
         kaitouran_clear();
     }
 
+    function redraw_sikaku_plus(sikakus) {
+        clearRect(50,200,440,400);
+        ctx.font = "96px";
+        ctx.fillText("5  =",100,300);
+        ctx.fillText("+",450,300);
+        kosu = leftn+sikakus.length
+        for (i=0;i<kosu;i++){
+            // 四角塗りつぶし
+            if (i<=5) {
+                ctx.fillStyle = 'skyblue';
+            } 
+            if (5<i && i<=10) {
+                ctx.fillStyle = 'pink';
+            } 
+            xi = i % 5;
+            yi = Math.floor(i/5);
+            ctx.fillRect(rectl+rectw*xi, rectt+rectw*yi+70, rectw, rectw);
+            // 四角縁取り
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(rectl+rectw*xi, rectt+rectw*yi+70, rectw, rectw);
+        }
+        setTimeout(() => {
+            if (5-leftn == yubicnt) {
+                isSeikai = true;
+                seikai();
+            }
+        }, 200);
+    }
     // function timehyouji(keikatime_h) {
     //     if (keikatime_h>10) {
     //         if (timeid) {
@@ -194,6 +226,12 @@
     },{passive: false});
 
     // タッチ数を数える
+    function touchkankaku(stoptimes){
+        cnt = 0;
+        shokai = stoptimes[0];
+        for (i=0;i<stoptimes.length;){}
+   
+    }
     canvas.addEventListener("touchstart", function(e){
         e.preventDefault();
         if (isSeikai == true) {return;}
@@ -206,18 +244,21 @@
             y1 = touchPoints[i].pageY;
             if (kleft+50<x1 && x1<kleft+kwidth && 
                 ktop+50<y1 && y1<ktop+kheight){
-                if (mode==91){return} 
+                if (mode==91){return} // 91は揃っているという意味
                 yubicnt += 1;
                 sikakus.push([x1,y1]);
             }
         }
         sikaku_drwaw(sikakus);
-        if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
-            isSeikai = true;
-            seikai();
-        } else {
-            batu();
-        }
+        redraw_sikaku_plus(sikakus);
+        // if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
+        //     isSeikai = true;
+        //     seikai();
+        // } 
+        // if (new Date() - stime>5000){
+        //     mode = 91;
+        //     batu();
+        // }
     },{passive: false});
     canvas.addEventListener("touchmove", function(e){
         e.preventDefault();
@@ -236,12 +277,13 @@
             }
         }
         sikaku_drwaw(sikakus);
-        if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
-            isSeikai = true;
-            seikai();
-        } else {
-            batu();
-        }
+        redraw_sikaku_plus(sikakus);
+        // if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
+        //     isSeikai = true;
+        //     seikai();
+        // } else {
+        //     batu();
+        // }
     },{passive: false});
     canvas.addEventListener("touchend", function(e) {
         e.preventDefault();
@@ -267,12 +309,13 @@
             }
         });
         sikaku_drwaw(sikakus);
-        if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
-            isSeikai = true;
-            seikai();
-        } else {
-            batu();
-        }
+        redraw_sikaku_plus(sikakus);
+        // if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
+        //     isSeikai = true;
+        //     seikai();
+        // } else {
+        //     batu();
+        // }
     },{passive: false});
 
 
