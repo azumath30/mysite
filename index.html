@@ -35,12 +35,12 @@
     let sikakus_ima = [];
     let sikakus_end = [];
     let stime;
-    let keikatime;
+    let keikatime_h;
     let pushtime;
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
     ctx.font = "20px 'sans-serif'";
-    ctx.fillText("メニューv13", 70, 60);
+    ctx.fillText("メニューv14", 70, 60);
     });
     document.fonts.ready.then(() => {
     ctx.font = "sans-serif 20px";
@@ -124,7 +124,7 @@
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
         ctx.strokeRect(kleft, ktop, kwidth, kheight);
-
+        ctx.globalAlpha = 1;
     }
 
     function seikai() {
@@ -135,9 +135,9 @@
         ctx.arc(x1, y1, 100, 0, Math.PI * 2);
         ctx.fill();
         mode = 91;
-        if (timeid) {
-            clearTimeout(timeid);
-        }
+        // 時間を止める
+        clearTimeout(timeid);
+        
         isSeikai = false;
     }
     
