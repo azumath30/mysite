@@ -39,7 +39,7 @@
     let pushtime;
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
-    ctx.font = "20px 'Your Web Font'";
+    ctx.font = "20px 'sans-serif'";
     ctx.fillText("メニューv11", 70, 60);
     });
     document.fonts.ready.then(() => {
@@ -125,6 +125,10 @@
         ctx.fill();
         mode = 91;
         isSeikai = false;
+    }
+    
+    function batu() {
+        return;
     }
 
     function sikaku_drwaw(sikakus){
