@@ -129,6 +129,7 @@
 
         if (5-leftn == yubicnt) {
             isSeikai = true;
+            ctx.fillText("jump to seikai.",40,80);
             seikai();
         }
     }
@@ -159,7 +160,8 @@
                 // 何もしない
             }
             if (yubikotae==yubicnt){
-                honto_seikai()
+                ctx.filltext("jump to honto_seikai.",40, 100);
+                honto_seikai();
             }
         }
         isSeikai = false;
