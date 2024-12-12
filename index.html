@@ -19,9 +19,12 @@
     // 矩形を描画 (x, y, 幅, 高さ)
     ctx.strokeRect(0, 0, canvas.width-30, canvas.height-30);
 
-    // 四角図形
+    // 四角図形を描く
     let leftn;
     let kosu;
+    let rectl = 160;
+    let rectt = 270;
+    let rectw = 50;
     // menu
     let r1 = 50;
     let mode;
@@ -73,10 +76,7 @@
         leftn = Math.floor(Math.random()*4)+1;
         console.log("leftn=",leftn);
         yubikotae = 5-leftn; 
-        // 四角を書く
-        let rectl = 160;
-        let rectt = 270;
-        let rectw = 50;
+
         ctx.font = "96px";
         ctx.fillText("5  =",100,300);
         ctx.fillText("+",450,300);
@@ -121,8 +121,8 @@
         ctx.fillText("+",450,300);
         kosu = leftn + sikakus.length;
         ctx.clearRect(40,20,90,40);//
-        ctx.fillText("kosu",40,60)//
-        ctx.fillText(kosu,60,60);//
+        ctx.fillText("kosu:",40,60)//
+        ctx.fillText(kosu,90,60);//
         for (i=0;i<kosu;i++){
             // 四角塗りつぶし
             if (i<=5) {
