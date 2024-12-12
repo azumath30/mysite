@@ -155,9 +155,11 @@
         if (isSeikai == true) {
             // 止める
             stime = new Date().getTime;
-            while (new Date().getTime - stime < 500) {
+            while (new Date().getTime - stime < 3000) {
                 // 何もしない
             }
+            ctx.fillText("kos2:",40,80)//
+            ctx.fillText(kosu,90,80);//
             if (kosu == 5){
                 ctx.filltext("jump to honto_seikai.",40, 100);
                 honto_seikai();
