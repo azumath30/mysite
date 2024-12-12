@@ -97,19 +97,23 @@
         kaitouran_clear();
 
         //while
-        ctx.fillText("I'm in mode1() now.",100,40);
+        ctx.fillText("I'm in mode1 now.",100,40);
         ctx.fillText(leftn,100,60);
         const startTime = new Date().getTime();
+        h = 0;
         while (h < 3000) {
             h = new Date().getTime() - startTime;
             ctx.fillText(h,40,40);
+            //
             s2time = new Date.getTime();
+            h2 = 0;
             while (h2 < 100){
-                h2 = new Date().getTime() - s2Time;
+                h2 = new Date().getTime() - s2time;
                 // waiting
             }
             ctx.clearRect(40,20,90,20);
         }
+        ctx.fillText("next",40,40);
     }
 
     function redraw_sikaku_plus(sikakus) {
