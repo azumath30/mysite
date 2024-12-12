@@ -98,6 +98,23 @@
         // 解答欄をクリア
         kaitouran_clear();
     }
+    // 解答欄クリア
+    function kaitouran_clear() {
+        // 解答欄
+        // 全体をクリア
+        ctx.clearRect(kleft-20, ktop-20, kwidth+40, kheight+40);
+        // 四角塗りつぶし
+        // set transparency value
+        ctx.globalAlpha = 0.1;
+        ctx.fillStyle = '#9bea33';
+        ctx.fillRect(kleft, ktop, kwidth, kheight);
+
+        // 四角縁取り
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(kleft, ktop, kwidth, kheight);
+        ctx.globalAlpha = 1;
+    }
 
     function redraw_sikaku_plus(sikakus) {
         ctx.clearRect(50,200,440,400);
@@ -127,29 +144,11 @@
             ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
         }
 
-        if (5-leftn == yubicnt) {
+        if (kosu == 5) {
             isSeikai = true;
             ctx.fillText("jump to seikai.",40,80);
             seikai();
         }
-    }
-
-    // 解答欄クリア
-    function kaitouran_clear() {
-        // 解答欄
-        // 全体をクリア
-        ctx.clearRect(kleft-20, ktop-20, kwidth+40, kheight+40);
-        // 四角塗りつぶし
-        // set transparency value
-        ctx.globalAlpha = 0.1;
-        ctx.fillStyle = '#9bea33';
-        ctx.fillRect(kleft, ktop, kwidth, kheight);
-
-        // 四角縁取り
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 1;
-        ctx.strokeRect(kleft, ktop, kwidth, kheight);
-        ctx.globalAlpha = 1;
     }
 
     function seikai() {
@@ -159,7 +158,7 @@
             while (new Date().getTime - stime > 500) {
                 // 何もしない
             }
-            if (yubikotae==yubicnt){
+            if (kosu == 5){
                 ctx.filltext("jump to honto_seikai.",40, 100);
                 honto_seikai();
             }
