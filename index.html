@@ -90,28 +90,24 @@
         }
         // 時計スタート
         stime = new Date();
-        ctx.font = "20px";
-        ctx.fillStyle = 'black';
+        //ctx.font = "20px";
+        //ctx.fillStyle = 'black';
 
         // 解答欄をクリア
         kaitouran_clear();
 
         //while
+        ctx.fillStyle = 'black'
         ctx.fillText("I'm in mode1 now.",100,40);
-        ctx.fillText(leftn,100,60);
+        ctx.fillText(leftn,80,40);
         const startTime = new Date().getTime();
         h = 0;
         while (h < 3000) {
             h = new Date().getTime() - startTime;
-            ctx.fillText(h,40,40);
-            //
-            s2time = new Date().getTime();
-            h2 = 0;
-            while (h2 < 100){
-                h2 = new Date().getTime() - s2time;
-                // waiting
+            if (h % 1000 < 5) {
+                ctx.clearRect(40,20,90,20);
+                ctx.fillText(h,40,40);
             }
-            ctx.clearRect(40,20,90,20);
         }
         ctx.fillText("next",40,40);
     }
