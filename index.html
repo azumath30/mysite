@@ -154,9 +154,10 @@
     function seikai() {
         //if (isSeikai == true) {
             ctx.fillText("kos2:",40,100)//
+            ctx.fillText(kosu,90,100);//
             // 止める
             stime1 = new Date().getTime;
-            while (new Date().getTime - stime1 < 3000) {
+            while (new Date().getTime - stime1 < 1000) {
                 // 何もしない
             }
             if (kosu == 5){
@@ -164,7 +165,7 @@
                 honto_seikai();
             }
             ctx.fillText("kos2:",40,100)//
-            ctx.fillText(kosu,90,100);//
+            
         //}
         //isSeikai = false;
     }
