@@ -67,10 +67,11 @@
         // タイトル
         ctx.font = "36px";
         ctx.fillText("５の分解",400,100);
-        // 
+        // 乱数の決定
         leftn = Math.floor(Math.random()*4)+1;
+        console.log("leftn=",leftn);
         yubikotae = 5-leftn; 
-        //
+        // 四角を書く
         let rectl = 160;
         let rectt = 270;
         let rectw = 50;
@@ -93,6 +94,14 @@
 
         // 解答欄をクリア
         kaitouran_clear();
+
+        //while
+        while (True) {
+            chktime = new Date();
+            if (new Date() - chktime > 5000) {
+                break;
+            }
+        }
     }
 
     function redraw_sikaku_plus(sikakus) {
@@ -207,7 +216,7 @@
     }
 
     // メニューを選択
-    canvas.addEventListener("touchstart", function(e){ //<-touchstart
+    canvas.addEventListener("click", function(e){ //<-touchstart
         if (mode>0) {return}
         //
         ctx.fillText("2",10,10);
@@ -228,16 +237,18 @@
     },{passive: false});
 
     // タッチ数を数える
-    canvas.addEventListener("touchstart", function(e){
+    canvas.addEventListener("touchstart", function(e){ // <-touchstart
         e.preventDefault();
         if (isSeikai == true) {return;}
         stoptimes.push(new Date() - stime);
         const touchPoints = e.touches;
+        console.log(touchPoints);
         let yubicnt=0;
         sikakus = [];
         for (let i = 0; i < touchPoints.length; i++) {
             x1 = touchPoints[i].pageX;
             y1 = touchPoints[i].pageY;
+            console.log("x1,y1=",x1,y1);
             if (kleft+50<x1 && x1<kleft+kwidth && 
                 ktop+50<y1 && y1<ktop+kheight){
                 if (mode==91){return} // 91は揃っているという意味
