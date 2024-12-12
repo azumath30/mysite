@@ -24,6 +24,7 @@
     // menu
     let r1 = 50;
     let mode;
+    mode = -1;
     let yubikotae; // 指答え
     let yubicnt; // 指カウント
     // 解答欄
@@ -152,6 +153,7 @@
     //     }, 100);
     // }
 
+    // 解答欄クリア
     function kaitouran_clear() {
         // 解答欄
         // 全体をクリア
@@ -215,9 +217,8 @@
     }
 
     // メニューを選択
-    canvas.addEventListener("click", function(e){ //<-touchstart
-        if (mode>0) {return}
-        //
+    canvas.addEventListener("touchstart", function(e){ //<-touchstart
+    if (mode < 0) {
         ctx.fillText("2",10,10);
         yoko = 300;
         mode = 0;
@@ -233,10 +234,10 @@
             ctx.fillText(mode,20,20);
             mode1();
         }
-    },{passive: false});
+    }
 
+    if (mode==1) {
     // タッチ数を数える
-    canvas.addEventListener("touchstart", function(e){ // <-touchstart
         e.preventDefault();
         if (isSeikai == true) {return;}
         stoptimes.push(new Date() - stime);
@@ -265,7 +266,9 @@
         //     mode = 91;
         //     batu();
         // }
+    }//if(move>0)
     },{passive: false});
+
     canvas.addEventListener("touchmove", function(e){
         e.preventDefault();
         if (isSeikai == true) {return;}
@@ -290,6 +293,7 @@
         // } else {
         //     batu();
         // }
+    
     },{passive: false});
     canvas.addEventListener("touchend", function(e) {
         e.preventDefault();
