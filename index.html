@@ -97,9 +97,10 @@
         kaitouran_clear();
 
         //while
-        ctx.fillText("in mode1 now.",100,40);
+        ctx.fillText("I'm in mode1 now.",100,40);
+        ctx.fillText(leftn,100,60);
         const startTime = new Date().getTime();
-        while (new Date().getTime() - startTime < 5000) {
+        while (new Date().getTime() - startTime < 1000) {
             // 何もしない
         }
     }
@@ -134,6 +135,13 @@
                 seikai();
             }
         }, 200);
+
+        //while
+        ctx.fillText("I'm in rewrite square now.",100,40);
+        const startTime = new Date().getTime();
+        while (new Date().getTime() - startTime < 1000) {
+            // 何もしない
+        }
     }
     // function timehyouji(keikatime_h) {
     //     if (keikatime_h>10) {
