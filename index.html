@@ -103,9 +103,9 @@
         ctx.fillText(leftn,80,40);
         const startTime = new Date().getTime();
         h = 0;
-        while (h < 3000) {
+        while (h < 1000) {
             h = new Date().getTime() - startTime;
-            if (h % 1000 < 5) {
+            if (h % 100 < 5) {
                 ctx.clearRect(40,20,90,20);
                 ctx.fillText(h,40,40);
             }
@@ -119,8 +119,10 @@
         ctx.fillStyle = 'black';
         ctx.fillText("5  =",100,300);
         ctx.fillText("+",450,300);
-
         kosu = leftn + sikakus.length;
+        ctx.clearRect(40,20,90,40);//
+        ctx.fillText("kosu",40,60)//
+        ctx.fillText(kosu,60,60);//
         for (i=0;i<kosu;i++){
             // 四角塗りつぶし
             if (i<=5) {
