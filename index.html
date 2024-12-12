@@ -96,21 +96,6 @@
 
         // 解答欄をクリア
         kaitouran_clear();
-
-        //while
-        ctx.fillStyle = 'black'
-        ctx.fillText("I'm in mode1 now.",100,40);
-        ctx.fillText(leftn,80,40);
-        const startTime = new Date().getTime();
-        h = 0;
-        while (h < 1000) {
-            h = new Date().getTime() - startTime;
-            if (h % 100 < 5) {
-                ctx.clearRect(40,20,90,20);
-                ctx.fillText(h,40,40);
-            }
-        }
-        ctx.fillText("next",40,40);
     }
 
     function redraw_sikaku_plus(sikakus) {
@@ -125,20 +110,20 @@
         ctx.fillText(kosu,90,60);//
         for (i=0;i<kosu;i++){
             // 四角塗りつぶし
-            if (i<=5) {
+            if (i<5) { //０始まりなので５
                 ctx.fillStyle = 'skyblue';
             } 
-            if (5<i && i<=10) {
+            if (5<=i && i<10) {
                 ctx.fillStyle = 'pink';
             } 
             xi = i % 5;
             yi = Math.floor(i/5);
             // 四角形
-            ctx.fillRect(rectl+rectw*xi, rectt+(rectw+70)*yi, rectw, rectw);
+            ctx.fillRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
             // 四角縁取り
             ctx.strokeStyle = 'black';
             ctx.lineWidth = 1;
-            ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+70)*yi, rectw, rectw);
+            ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
         }
         setTimeout(() => {
             if (5-leftn == yubicnt) {
@@ -146,13 +131,6 @@
                 seikai();
             }
         }, 200);
-
-        //while
-        ctx.fillText("I'm in rewrite square now.",100,40);
-        const startTime = new Date().getTime();
-        while (new Date().getTime() - startTime < 1000) {
-            // 何もしない
-        }
     }
     // function timehyouji(keikatime_h) {
     //     if (keikatime_h>10) {
