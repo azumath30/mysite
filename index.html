@@ -44,7 +44,7 @@
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
     ctx.font = "20px 'sans-serif'";
-    ctx.fillText("メニューv14", 70, 60);
+    ctx.fillText("メニューv15", 70, 60);
     });
     document.fonts.ready.then(() => {
     ctx.font = "sans-serif 20px";
@@ -96,11 +96,10 @@
         kaitouran_clear();
 
         //while
-        chktime = new Date();
-        while (True) {
-            if (new Date() - chktime > 5000) {
-                break;
-            }
+        ctx.fillText("in mode1 now.",100,40);
+        const startTime = new Date().getTime();
+        while (new Date().getTime() - startTime < 5000) {
+            // 何もしない
         }
     }
 
