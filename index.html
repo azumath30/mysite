@@ -21,6 +21,7 @@
 
     // 四角図形
     let leftn;
+    let kosu;
     // menu
     let r1 = 50;
     let mode;
@@ -118,7 +119,8 @@
         ctx.fillStyle = 'black';
         ctx.fillText("5  =",100,300);
         ctx.fillText("+",450,300);
-        let kosu = leftn + sikakus.length
+
+        kosu = leftn + sikakus.length;
         for (i=0;i<kosu;i++){
             // 四角塗りつぶし
             if (i<=5) {
