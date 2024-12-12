@@ -155,7 +155,7 @@
         if (isSeikai == true) {
             // 止める
             stime = new Date().getTime;
-            while (new Date().getTime - stime > 500) {
+            while (new Date().getTime - stime < 500) {
                 // 何もしない
             }
             if (kosu == 5){
@@ -173,7 +173,7 @@
         ctx.arc(x1, y1, 100, 0, Math.PI * 2);
         // 止める
         stime = new Date().getTime;
-        while (new Date().getTime - stime > 5000) {
+        while (new Date().getTime - stime < 5000) {
             // 何もしない
         }
         mode = 91;
@@ -194,7 +194,7 @@
         ctx.stroke();
         // 止める
         stime = new Date().getTime;
-        while (new Date().getTime - stime > 5000) {
+        while (new Date().getTime - stime < 5000) {
             // 何もしない
         }
         mode = 91;
