@@ -97,11 +97,12 @@
         kaitouran_clear();
 
         //while
-        ctx.fillText("I'm in mode1 now.",100,40);
+        ctx.fillText("I'm in mode1() now.",100,40);
         ctx.fillText(leftn,100,60);
         const startTime = new Date().getTime();
-        while (new Date().getTime() - startTime < 1000) {
-            // 何もしない
+        while (new Date().getTime() - startTime < 3000) {
+            ctx.fillText(new Date().getTime() - startTime,40,40)
+            ctx.clearRect(40,20,90,20);
         }
     }
 
