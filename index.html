@@ -38,6 +38,7 @@
     let kheight = 550;
     let isSeikai;
     isSeikai = false;
+    let seikai_cnt;
     let touchPoints = [];
     let sikakus = [];
     let sikakus_ima = [];
@@ -125,30 +126,12 @@
             ctx.lineWidth = 1;
             ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
         }
-        setTimeout(() => {
-            if (5-leftn == yubicnt) {
-                isSeikai = true;
-                seikai();
-            }
-        }, 200);
+
+        if (5-leftn == yubicnt) {
+            isSeikai = true;
+            seikai();
+        }
     }
-    // function timehyouji(keikatime_h) {
-    //     if (keikatime_h>10) {
-    //         if (timeid) {
-    //             clearTimeout(timeid);
-    //          }
-    //         return;
-    //     }
-    //     timeid = setTimeout(() => {
-    //         keikatime = new Date() - stime;
-    //         keikatime_h = (keikatime/1000).toFixed(1);
-    //         ctx.clearRect(430,130-25,80,25);
-    //         ctx.font = "20px";
-    //         ctx.fillStyle = 'black';
-    //         ctx.fillText(keikatime_h, 430, 130);
-    //         timehyouji(keikatime_h); 
-    //     }, 100);
-    // }
 
     // 解答欄クリア
     function kaitouran_clear() {
@@ -169,11 +152,29 @@
     }
 
     function seikai() {
-        if (isSeikai == true) return
+        if (isSeikai == true) {
+            // 止める
+            stime = new Date().getTime;
+            while (new Date().getTime - stime > 500) {
+                // 何もしない
+            }
+            if (yubikotae==yubicnt){
+                honto_seikai()
+            }
+        }
+        isSeikai = false;
+    }
+
+    function honto_seikai() {
         x1 = Math.floor(kleft+kwidth/2);
         y1 = Math.floor(ktop+kheight/2);
         ctx.fillStyle = 'red';
         ctx.arc(x1, y1, 100, 0, Math.PI * 2);
+        // 止める
+        stime = new Date().getTime;
+        while (new Date().getTime - stime > 5000) {
+            // 何もしない
+        }
         mode = 91;
 
         isSeikai = false;
@@ -190,11 +191,14 @@
         ctx.moveTo(kleft+100,ktop+100);
         ctx.lineTo(kleft+300,ktop+300);
         ctx.stroke();
-
+        // 止める
+        stime = new Date().getTime;
+        while (new Date().getTime - stime > 5000) {
+            // 何もしない
+        }
         mode = 91;
         isSeikai = false;
         stoptimes = [];
-        stime = new Date();
         return;
     }
 
