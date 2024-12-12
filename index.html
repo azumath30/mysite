@@ -123,7 +123,7 @@
         ctx.fillText("5  =",100,300);
         ctx.fillText("+",450,300);
         kosu = leftn + sikakus.length;
-        ctx.clearRect(40,20,90,40);//
+        ctx.clearRect(40,20,100,80);//
         ctx.fillText("kosu:",40,60)//
         ctx.fillText(kosu,90,60);//
         for (i=0;i<kosu;i++){
@@ -159,7 +159,7 @@
                 // 何もしない
             }
             if (kosu == 5){
-                ctx.filltext("jump to honto_seikai.",40, 100);
+                ctx.filltext("jump to honto_seikai.",40, 120);
                 honto_seikai();
             }
             ctx.fillText("kos2:",40,100)//
@@ -299,7 +299,7 @@
         // }
     
     },{passive: false});
-    
+
     canvas.addEventListener("touchend", function(e) {
         e.preventDefault();
         if (isSeikai == true) {return;}
