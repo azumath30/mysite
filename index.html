@@ -145,14 +145,14 @@
         }
 
         if (kosu == 5) {
-            isSeikai = true;
+            //isSeikai = true;
             ctx.fillText("jump to seikai.",40,80);
             seikai();
         }
     }
 
     function seikai() {
-        if (isSeikai == true) {
+        //if (isSeikai == true) {
             // 止める
             stime = new Date().getTime;
             while (new Date().getTime - stime < 3000) {
@@ -164,7 +164,7 @@
                 ctx.filltext("jump to honto_seikai.",40, 100);
                 honto_seikai();
             }
-        }
+        //}
         //isSeikai = false;
     }
 
