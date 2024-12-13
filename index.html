@@ -145,20 +145,22 @@
             ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
         }
         setTimeout(() => {
-            ctx.fillText("200ms passed",40,80);
+            ctx.clearRect(40,60,100,60);
+            ctx.fillText("100ms passed",40,80);
             if (kosu == 5) {
                 //isSeikai = true;
                 ctx.fillText("jump to seikai.",40,80);
                 seikai();
             }
-        }, 200);
+        }, 100);
     }
 
     function seikai() {
         //if (isSeikai == true) {
-            ctx.fillText("kos2:",40,100);//
+            ctx.fillText("yubi:",40,100);//
             ctx.fillText(kosu,90,100);//
             ctx.fillText(sikakus.length,90, 120);//
+            ctx.fillText(5-leftn,130, 120);//
             
             if (sikakus.length == 5-leftn){
                 ctx.filltext("jump to honto_seikai.", 40, 120);
