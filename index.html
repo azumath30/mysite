@@ -94,9 +94,9 @@
         document.fonts.ready.then(() => {
         for (i=0;i<8;i++){
             if (mode == i+1) {
-                fillStyle = 'red';
+                ctx.fillStyle = 'red';
             } else {
-                fillStyle = 'black';
+                ctx.fillStyle = 'black';
             }
             ctx.fillText(text_menus[i],100,100+r1*i);
             ctx.fillText(seikaisu_itirans[i][1],600,100+r1*i);
