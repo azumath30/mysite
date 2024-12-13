@@ -250,7 +250,7 @@
         //ctx.moveTo(kleft+100,ktop+100);
         //ctx.lineTo(kleft+300,ktop+300);
         //ctx.stroke();
-        clearRect(100,140,200,180);
+        clearRect(100,140,200,20);
         ctx.fillStyle = 'blue';
         ctx.fillText("✕", 40, 160);//
         // 不正解音
@@ -260,7 +260,10 @@
         //while (new Date().getTime - stime < 5000) {
             // 何もしない
         //}
-        return;
+        setTimeout(() => {
+            sikaku_draw(sikakus);
+            redraw_sikaku_plus(sikakus);
+        }, 1000);
     }
 
     // 画面右の解答欄に四角を描く
