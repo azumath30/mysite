@@ -74,7 +74,7 @@
         ctx.fillText("ver01",10,15);
         ctx.font = "20px 'sans-serif'";
         ctx.fillText("<メニュー>", 70, 60);
-        ctx.fillText("正解数", 550, 60);
+        ctx.fillText("正解数", 600, 60);
         ctx.fillText("タイム", 700, 60);
     });
         if (mode == 0) {fillStyle = 'black';}
@@ -96,10 +96,10 @@
                 fillStyle = 'black';
             }
             ctx.fillText(text_menus[i],100,100+r1*i);
-            ctx.fillText(seikaisu_itirans[i][1],550,100+r1*i);
-            ctx.fillText("/",570,100+r1*i);
-            ctx.fillText(seikaisu_itirans[i][2],590,100+r1*i);
-            ctx.fillText(seikaisu_itirans[i][3],700,100+r1*i);
+            ctx.fillText(seikaisu_itirans[i][1],600,100+r1*i);
+            ctx.fillText("/",620,100+r1*i);
+            ctx.fillText(seikaisu_itirans[i][2],640,100+r1*i);
+            ctx.fillText(seikaisu_itirans[i][3],750,100+r1*i);
         }
         });
 
@@ -185,8 +185,8 @@
             ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
         }
         setTimeout(() => {
-            ctx.clearRect(40,60,100,60);
-            ctx.fillText("100ms passed",40,80);
+            //ctx.clearRect(40,60,100,60);
+            //ctx.fillText("100ms passed",40,80);
             if (kosu == 5) {
                 //ctx.fillText("jump to seikai.",40,80);
                 seikai();
@@ -221,12 +221,15 @@
         seikaisu_itirans[0][1] += 1;
         //
         if (seikaisu_itirans[0][1] >=seikaisu_itirans[0][2]) {
-            ctx.fillText("ステージクリア！", 40, 180);
             // 大時計計時
             stage_clear_time = new Date().getTime - oodokei;
             seikaisu_itirans[0][3] = stage_clear_time;
-            sentaku_aka(0);
             mode = 0;
+            setTimeout(()=>{
+                ctx.fillText("ステージクリア！", 40, 180);
+                sentaku_aka(0);
+            },3000);
+
         }
         mode1();
     }
