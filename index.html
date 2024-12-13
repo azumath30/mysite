@@ -143,7 +143,9 @@
         // 解答欄をクリア
         kaitouran_clear();
     }
+    // ----- mode２ -----
     function mode2() {
+        // 画面全体クリア・外枠
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.strokeRect(0, 0, canvas.width-30, canvas.height-30);
         // タイトル
@@ -158,10 +160,10 @@
         ctx.font = "96px";
         ctx.fillText(leftn,200,300);
         ctx.fillText("+",300,300);
-        // 解答欄をクリア
+        // 解答欄をクリア -> 作成
         kaitouran_clear();
     }
-    
+
     // 解答欄クリア
     function kaitouran_clear() {
         // 解答欄
@@ -220,17 +222,18 @@
     }
 
     // mode2
-    function mode2gamen() { 
+    function mode2gamen(sikakus) { 
         // 乱数の決定
         leftn = Math.floor(Math.random()*4)+1;
         console.log("leftn=",leftn);
         yubikotae = 5-leftn; 
         // 解答欄をクリア
         kaitouran_clear(); 
-        ctx.clearRect(200,200,200,200);
+        ctx.clearRect(200,200,250,200);
         ctx.font = "96px";
         ctx.fillText(leftn,200,300);
         ctx.fillText("+",300,300);
+        ctx.fillText(sikakus.length,400,300)
         kosu = leftn + sikakus.length;
         if (kosu == 5) {
             setTimeout(() => {
@@ -377,30 +380,9 @@
             }, 1000);
         }
     }
- 
+    
     // 同じcanvasを使っているので、すでにmode1の中ではこちらにくる。
-    //----- mode 1 -----
-    if (mode==1) {
-    // 画面右のタッチ数を数える
-        e.preventDefault();
-        const touchPoints = e.touches;
-        let yubicnt=0;
-        sikakus = [];
-        for (let i = 0; i < touchPoints.length; i++) {
-            x1 = touchPoints[i].pageX;
-            y1 = touchPoints[i].pageY;
-            console.log("x1,y1=",x1,y1);
-            if (kleft+50<x1 && x1<kleft+kwidth && 
-                ktop+50<y1 && y1<ktop+kheight){
-                yubicnt += 1;
-                sikakus.push([x1,y1]);
-            }
-        }
-        sikaku_draw(sikakus);
-        redraw_sikaku_plus(sikakus);
-    }//if(move>0)
-    // ------ mode 2 ------
-    if (mode==2) {
+    // ----- 解答欄共通 ----- 
     // 画面右のタッチ数を数える
     e.preventDefault();
         const touchPoints = e.touches;
@@ -415,10 +397,16 @@
                 yubicnt += 1;
                 sikakus.push([x1,y1]);
             }
-        }
+        }    
+    //----- mode -----
+    if (mode==1) {
         sikaku_draw(sikakus);
         redraw_sikaku_plus(sikakus);
     }
+    if (mode==2) {
+        mode2gamen(sikakus);
+    }
+
     },{passive: false});
 
     // canvas.addEventListener("touchmove", function(e){
