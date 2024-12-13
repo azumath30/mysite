@@ -102,7 +102,7 @@
             ctx.fillText(seikaisu_itirans[i][1],600,100+r1*i);
             ctx.fillText("/",620,100+r1*i);
             ctx.fillText(seikaisu_itirans[i][2],640,100+r1*i);
-            ctx.fillText(seikaisu_itirans[i][3],750,100+r1*i);
+            ctx.fillText(seikaisu_itirans[i][3]/1000,750,100+r1*i);
         }
         });
 
@@ -227,7 +227,7 @@
         if (seikaisu_itirans[0][1]+1 >= seikaisu_itirans[0][2]) {
             // 大時計計時
             stage_clear_time = new Date().getTime() - oodokei;
-            ctx.fillText(stage_clear_time, 100, 50);
+            //ctx.fillText(stage_clear_time, 100, 50);
             seikaisu_itirans[0][3] = stage_clear_time;
             mode = 0;
             setTimeout(()=>{
