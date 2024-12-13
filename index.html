@@ -117,7 +117,7 @@
         ctx.strokeRect(0, 0, canvas.width-30, canvas.height-30);
         // タイトル
         ctx.font = "36px";
-        ctx.sfillStyle = 'black';
+        ctx.fillStyle = 'black';
         ctx.fillText("５をつくる",400,100);
         // 乱数の決定
         leftn = Math.floor(Math.random()*4)+1;
@@ -216,12 +216,12 @@
         ctx.clearRect(100,140,200,20);
         ctx.fillStyle = 'red';
         ctx.fillText("◯", 100, 160);
-        ctx.fillText(seikaisu_itirans[0][1]+1, 120, 160);
-        ctx.fillText("正解", 140, 160);
+        ctx.fillText(seikaisu_itirans[0][1]+1, 130, 160);
+        ctx.fillText("問正解", 140, 160);
         // 正解音
         correct.play();
         //
-        if (seikaisu_itirans[0][1] >= seikaisu_itirans[0][2]) {
+        if (seikaisu_itirans[0][1]+1 >= seikaisu_itirans[0][2]) {
             // 大時計計時
             stage_clear_time = new Date().getTime - oodokei;
             seikaisu_itirans[0][3] = stage_clear_time;
@@ -286,6 +286,7 @@
             }
         } 
         if (mode==1){
+            sentaku_aka(mode);
             setTimeout(() => {
                 mode1();
             }, 800);
