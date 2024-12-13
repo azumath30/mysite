@@ -163,7 +163,7 @@
             ctx.fillText(5-leftn,130, 120);//
             
             if (sikakus.length == 5-leftn){
-                ctx.filltext("jump to honto_seikai.", 40, 120);
+                ctx.fillText("jump to honto_seikai.", 40, 120);
                 honto_seikai();
             } else {
                 batu();
@@ -177,12 +177,12 @@
         y1 = Math.floor(ktop+kheight/2);
         ctx.fillStyle = 'red';
         ctx.arc(x1, y1, 100, 0, Math.PI * 2);
-        ctx.fillText("◯",40,160);//
+        ctx.fillText("◯", 40, 160);//
         // 止める
-        stime = new Date().getTime;
-        while (new Date().getTime - stime < 5000) {
-            // 何もしない
-        }
+        // stime = new Date().getTime;
+        // while (new Date().getTime - stime < 5000) {
+        //     // 何もしない
+        // }
         mode = 91;
 
         isSeikai = false;
