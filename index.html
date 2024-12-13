@@ -219,8 +219,6 @@
         ctx.fillText("正解", 140, 160);
         // 正解音
         correct.play();
-        // 正解数を増やす
-        seikaisu_itirans[0][1] += 1;
         //
         if (seikaisu_itirans[0][1] >= seikaisu_itirans[0][2]) {
             // 大時計計時
@@ -233,6 +231,8 @@
             },3000);
         }
         setTimeout(() => {
+            // 正解数を増やす
+            seikaisu_itirans[0][1] += 1;
             mode1();
         }, 800);
     }
@@ -315,50 +315,50 @@
     }//if(move>0)
     },{passive: false});
 
-    canvas.addEventListener("touchmove", function(e){
-        e.preventDefault();
-        const touchPoints = e.touches;
-        let yubicnt=0;
-        sikakus = [];
-        for (let i = 0; i < touchPoints.length; i++) {
-            x1 = touchPoints[i].pageX;
-            y1 = touchPoints[i].pageY;
-            if (kleft+50<x1 && x1<kleft+kwidth && 
-                ktop+50<y1 && y1<ktop+kheight){
-                yubicnt += 1;
-                sikakus.push([x1,y1]);
-            }
-        }
-        sikaku_draw(sikakus);
-        redraw_sikaku_plus(sikakus);
+    // canvas.addEventListener("touchmove", function(e){
+    //     e.preventDefault();
+    //     const touchPoints = e.touches;
+    //     let yubicnt=0;
+    //     sikakus = [];
+    //     for (let i = 0; i < touchPoints.length; i++) {
+    //         x1 = touchPoints[i].pageX;
+    //         y1 = touchPoints[i].pageY;
+    //         if (kleft+50<x1 && x1<kleft+kwidth && 
+    //             ktop+50<y1 && y1<ktop+kheight){
+    //             yubicnt += 1;
+    //             sikakus.push([x1,y1]);
+    //         }
+    //     }
+    //     sikaku_draw(sikakus);
+    //     redraw_sikaku_plus(sikakus);
     
-    },{passive: false});
+    // },{passive: false});
 
-    canvas.addEventListener("touchend", function(e) {
-        e.preventDefault();
-        // 残りのタッチポイントから消去対象を特定
-        const touches = e.changedTouches;
-        const remainingTouches = [];
-        for (let i = 0; i < touchPoints.length; i++) {
-            if (touches[0].identifier !== touchPoints[i].identifier) {
-                remainingTouches.push(touchPoints[i]);
-            }
-        }       
-        let yubicnt=0;
-        sikakus = [];
-        remainingTouches.forEach(element => {
-            x1 = element.clientX
-            y1 = element.clientY
-            if (kleft+50<x1 && x1<kleft+kwidth && 
-            ktop+50<y1 && y1<ktop+kheight){
-                yubicnt += 1;
-                sikakus.push([x1,y1]);
-            }
-        });
-        sikaku_draw(sikakus);
-        redraw_sikaku_plus(sikakus);
+    // canvas.addEventListener("touchend", function(e) {
+    //     e.preventDefault();
+    //     // 残りのタッチポイントから消去対象を特定
+    //     const touches = e.changedTouches;
+    //     const remainingTouches = [];
+    //     for (let i = 0; i < touchPoints.length; i++) {
+    //         if (touches[0].identifier !== touchPoints[i].identifier) {
+    //             remainingTouches.push(touchPoints[i]);
+    //         }
+    //     }       
+    //     let yubicnt=0;
+    //     sikakus = [];
+    //     remainingTouches.forEach(element => {
+    //         x1 = element.clientX
+    //         y1 = element.clientY
+    //         if (kleft+50<x1 && x1<kleft+kwidth && 
+    //         ktop+50<y1 && y1<ktop+kheight){
+    //             yubicnt += 1;
+    //             sikakus.push([x1,y1]);
+    //         }
+    //     });
+    //     sikaku_draw(sikakus);
+    //     redraw_sikaku_plus(sikakus);
 
-    },{passive: false});
+    // },{passive: false});
 
 
     // ----- main -----
