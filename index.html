@@ -51,7 +51,7 @@
     // sound
     correct = new Audio('correct.mp3');
     correct.preload = 'auto';
-    correct.load();
+    //correct.load();
 
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
@@ -183,8 +183,9 @@
         ctx.fillStyle = 'red';
         ctx.arc(x1, y1, 100, 0, Math.PI * 2);
         ctx.fillText("◯", 40, 160);//
-        audio.onload
-        correct.play();
+        correct.onloadeddata = () => {
+            correct.play();
+        };
         // 止める
         // stime = new Date().getTime;
         // while (new Date().getTime - stime < 5000) {
