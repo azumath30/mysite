@@ -44,6 +44,7 @@
     let sikakus_ima = [];
     let sikakus_end = [];
     let stime;
+    let oodokei;
     let stoptimes = [];
     let keikatime_h;
     let pushtime;
@@ -90,8 +91,8 @@
             ctx.lineWidth = 1;
             ctx.strokeRect(rectl+rectw*i, rectt, rectw, rectw);
         }
-        // 時計スタート
-        stime = new Date();
+        // 大時計時計スタート
+        oodokei = new Date();
         //ctx.font = "20px";
         //ctx.fillStyle = 'black';
 
@@ -143,29 +144,27 @@
             ctx.lineWidth = 1;
             ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
         }
-
-        if (kosu == 5) {
-            //isSeikai = true;
-            ctx.fillText("jump to seikai.",40,80);
-            seikai();
-        }
+        setTimeout(() => {
+            if (kosu == 5) {
+                //isSeikai = true;
+                ctx.fillText("jump to seikai.",40,80);
+                seikai();
+            }
+        }, 200);
     }
 
     function seikai() {
         //if (isSeikai == true) {
-            ctx.fillText("kos2:",40,100)//
+            ctx.fillText("kos2:",40,100);//
             ctx.fillText(kosu,90,100);//
-            // 止める
-            stime1 = new Date().getTime;
-            while (new Date().getTime - stime1 < 1000) {
-                // 何もしない
-            }
-            if (kosu == 5){
-                ctx.filltext("jump to honto_seikai.",40, 120);
-                honto_seikai();
-            }
-            ctx.fillText("kos2:",40,100)//
+            ctx.fillText(sikakus.length,90, 120);//
             
+            if (sikakus.length == 5){
+                ctx.filltext("jump to honto_seikai.", 40, 120);
+                honto_seikai();
+            } else {
+                batu();
+            }
         //}
         //isSeikai = false;
     }
