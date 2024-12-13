@@ -251,7 +251,7 @@
         //ctx.moveTo(kleft+100,ktop+100);
         //ctx.lineTo(kleft+300,ktop+300);
         //ctx.stroke();
-        ctx.clearRect(100,140,200,20);
+        ctx.clearRect(100,140,200,40);
         ctx.fillStyle = 'blue';
         ctx.fillText("✕", 100, 160);//
         // 不正解音
@@ -262,6 +262,7 @@
             // 何もしない
         //}
         setTimeout(() => {
+            ctx.clearRect(100,140,200,40);
             sikakus = [];
             sikaku_draw(sikakus);
             redraw_sikaku_plus(sikakus);
