@@ -58,6 +58,8 @@
     correct = new Audio('correct.mp3');
     correct.preload = 'auto';
     //correct.load();
+    wrong = new Audio('wrong.mp3');
+    wrong.preload = 'auto';
 
     // ----- start page -----
     function sentaku_aka(mode){ 
@@ -210,11 +212,11 @@
     }
 
     function honto_seikai() {
-        x1 = Math.floor(kleft+kwidth/2);
-        y1 = Math.floor(ktop+kheight/2);
+        clearRect(100,140,200,180);
         ctx.fillStyle = 'red';
-        // ctx.arc(x1, y1, 100, 0, Math.PI * 2);
-        ctx.fillText("◯", 40, 160);//
+        ctx.fillText("◯", 100, 160);
+        ctx.fillText(seikaisu_itirans[1][1], 120, 160);
+        ctx.fillText("正解", 140, 160);
         // 正解音
         correct.play();
         // 正解数を増やす
@@ -229,9 +231,10 @@
                 ctx.fillText("ステージクリア！", 40, 180);
                 sentaku_aka(0);
             },3000);
-
         }
-        mode1();
+        setTimeout(() => {
+            mode1();
+        }, 800);
     }
     
     function batu() {
@@ -244,15 +247,16 @@
         //ctx.moveTo(kleft+100,ktop+100);
         //ctx.lineTo(kleft+300,ktop+300);
         //ctx.stroke();
+        clearRect(100,140,200,180);
         ctx.fillStyle = 'blue';
-        ctx.fillText("◯", 40, 160);//
-
+        ctx.fillText("✕", 40, 160);//
+        // 不正解音
+        wrong.play();
         // 止める
         //stime = new Date().getTime;
         //while (new Date().getTime - stime < 5000) {
             // 何もしない
         //}
-        stoptimes = [];
         return;
     }
 
