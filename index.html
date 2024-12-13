@@ -253,7 +253,7 @@
         //ctx.stroke();
         ctx.clearRect(100,140,200,20);
         ctx.fillStyle = 'blue';
-        ctx.fillText("✕", 40, 160);//
+        ctx.fillText("✕", 100, 160);//
         // 不正解音
         wrong.play();
         // 止める
@@ -262,6 +262,7 @@
             // 何もしない
         //}
         setTimeout(() => {
+            sikakus = [];
             sikaku_draw(sikakus);
             redraw_sikaku_plus(sikakus);
         }, 1000);
