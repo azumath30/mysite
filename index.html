@@ -186,14 +186,14 @@
             ctx.lineWidth = 1;
             ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
         }
-        setTimeout(() => {
-            //ctx.clearRect(40,60,100,60);
-            //ctx.fillText("100ms passed",40,80);
-            if (kosu == 5) {
+        if (kosu == 5) {
+            setTimeout(() => {
+                //ctx.clearRect(40,60,100,60);
+                //ctx.fillText("100ms passed",40,80);
                 //ctx.fillText("jump to seikai.",40,80);
-                seikai();
-            }
-        }, 200);
+                seikai();    
+            }, 200);
+        }
     }
 
     function seikai() {
@@ -297,7 +297,6 @@
     // 画面右のタッチ数を数える
         e.preventDefault();
         const touchPoints = e.touches;
-        console.log(touchPoints);
         let yubicnt=0;
         sikakus = [];
         for (let i = 0; i < touchPoints.length; i++) {
