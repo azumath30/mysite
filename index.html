@@ -13,11 +13,7 @@
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    // 外枠の色と太さを設定
-    ctx.strokeStyle = 'black';
-    ctx.lineWidth = 1;
-    // 矩形を描画 (x, y, 幅, 高さ)
-    ctx.strokeRect(0, 0, canvas.width-30, canvas.height-30);
+
 
     // 四角図形を描く
     let leftn;
@@ -31,13 +27,23 @@
     mode = -1;
     let yubikotae; // 指答え
     let yubicnt; // 指カウント
+    let seikaisu_itirans = [ // 面,正解数,設定数,タイム
+        [1,0,5,0],
+        [2,0,5,0],
+        [3,0,5,0],
+        [4,0,5,0],
+        [5,0,5,0],
+        [6,0,5,0],
+        [7,0,5,0],
+        [8,0,5,0],
+    ];
     // 解答欄
     let kleft = 550;
     let ktop = 50;
     let kwidth = 400;
     let kheight = 550;
-    let isSeikai;
-    isSeikai = false;
+    //let isSeikai;
+    //isSeikai = false;
     let seikai_cnt;
     let touchPoints = [];
     let sikakus = [];
@@ -53,23 +59,54 @@
     correct.preload = 'auto';
     //correct.load();
 
+    // ----- start page -----
+    function sentaku_aka(mode){ 
+    // canvas全体をクリア
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // 外枠の色と太さを設定
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 1;
+    // 矩形を描画 (x, y, 幅, 高さ)
+    ctx.strokeRect(0, 0, canvas.width-30, canvas.height-30);    
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
-    ctx.font = "20px 'sans-serif'";
-    ctx.fillText("メニューv15", 70, 60);
+        ctx.font = "8px 'sans-serif'";
+        ctx.fillText("ver01",10,15);
+        ctx.font = "20px 'sans-serif'";
+        ctx.fillText("<メニュー>", 70, 60);
+        ctx.fillText("正解数", 550, 60);
+        ctx.fillText("タイム", 700, 60);
     });
-    document.fonts.ready.then(() => {
-    ctx.font = "sans-serif 20px";
-    ctx.fillText("１　５の分解",100,100);
-    ctx.fillText('２　合わせて５になる足し算',100,100+r1);
-    ctx.fillText('３　５以上になる足し算',100,100+r1*2);
-    ctx.fillText('４　１０の分解',100,100+r1*3);
-    ctx.fillText('５　繰り上がりなしの足し算１（足す数が５まで）',100,100+r1*4);
-    ctx.fillText('６　１０いくつとの和',100,100+r1*5);
-    ctx.fillText('７　２桁＋２桁（くりあがりなし）',100,100+r1*6);
-    ctx.fillText('８　２桁＋２桁（くりあがりあり）',100,100+r1*7);
-    });
+        if (mode == 0) {fillStyle = 'black';}
+        ctx.font = "sans-serif 20px";
+        text_menus = ['１　５の分解',
+        '２　合わせて５になる足し算',
+        '３　５以上になる足し算',
+        '４　１０の分解',
+        '５　繰り上がりなしの足し算１（足す数が５まで）',
+        '６　１０いくつとの和',
+        '７　２桁＋２桁（くりあがりなし）',
+        '８　２桁＋２桁（くりあがりあり）',
+        ];
+        document.fonts.ready.then(() => {
+        for (i=0;i<8;i++){
+            if (mode == i+1) {
+                fillStyle = 'red';
+            } else {
+                fillStyle = 'black';
+            }
+            ctx.fillText(text_menus[i],100,100+r1*i);
+            ctx.fillText(seikaisu_itirans[i][1],550,100+r1*i);
+            ctx.fillText("/",570,100+r1*i);
+            ctx.fillText(seikaisu_itirans[i][2],590,100+r1*i);
+            ctx.fillText(seikaisu_itirans[i][3],700,100+r1*i);
+        }
+        });
 
+        // 大時計
+        oodokei = new Date().getTime;
+    }
+    
     // ----- mode1 -----
     function mode1() {
         // canvas全体をクリア
@@ -96,8 +133,6 @@
             ctx.lineWidth = 1;
             ctx.strokeRect(rectl+rectw*i, rectt, rectw, rectw);
         }
-        // 大時計時計スタート
-        oodokei = new Date();
         //ctx.font = "20px";
         //ctx.fillStyle = 'black';
 
@@ -129,9 +164,9 @@
         ctx.fillText("5  =",100,300);
         ctx.fillText("+",450,300);
         kosu = leftn + sikakus.length;
-        ctx.clearRect(40,20,100,80);//
-        ctx.fillText("kosu:",40,60)//
-        ctx.fillText(kosu,90,60);//
+        //ctx.clearRect(40,20,100,80);//
+        //ctx.fillText("kosu:",40,60)//
+        //ctx.fillText(kosu,90,60);//
         for (i=0;i<kosu;i++){
             // 四角塗りつぶし
             if (i<5) { //０始まりなので５
@@ -153,71 +188,71 @@
             ctx.clearRect(40,60,100,60);
             ctx.fillText("100ms passed",40,80);
             if (kosu == 5) {
-                //isSeikai = true;
-                ctx.fillText("jump to seikai.",40,80);
+                //ctx.fillText("jump to seikai.",40,80);
                 seikai();
             }
         }, 200);
     }
 
     function seikai() {
-        //if (isSeikai == true) {
-            ctx.fillText("yubi:",40,100);//
-            ctx.fillText(kosu,90,100);//
-            ctx.fillText(sikakus.length,90, 120);//
-            ctx.fillText(5-leftn,130, 120);//
+            //ctx.fillText("yubi:",40,100);//
+            //ctx.fillText(kosu,90,100);//
+            //ctx.fillText(sikakus.length,90, 120);//
+            //ctx.fillText(5-leftn,130, 120);//
             
             if (sikakus.length == 5-leftn){
-                ctx.fillText("jump to honto_seikai.", 40, 120);
+                //ctx.fillText("jump to honto_seikai.", 40, 120);
                 honto_seikai();
             } else {
                 batu();
             }
-        //}
-        //isSeikai = false;
+
     }
 
     function honto_seikai() {
         x1 = Math.floor(kleft+kwidth/2);
         y1 = Math.floor(ktop+kheight/2);
         ctx.fillStyle = 'red';
-        ctx.arc(x1, y1, 100, 0, Math.PI * 2);
+        // ctx.arc(x1, y1, 100, 0, Math.PI * 2);
         ctx.fillText("◯", 40, 160);//
-        // correct.onloadeddata = () => {
-            correct.play();
-        // };
-        // 止める
-        // stime = new Date().getTime;
-        // while (new Date().getTime - stime < 5000) {
-        //     // 何もしない
-        // }
-        mode = 91;
-
-        isSeikai = false;
+        // 正解音
+        correct.play();
+        // 正解数を増やす
+        seikaisu_itirans[0][1] += 1;
+        //
+        if (seikaisu_itirans[0][1] >=seikaisu_itirans[0][2]) {
+            ctx.fillText("ステージクリア！", 40, 180);
+            // 大時計計時
+            stage_clear_time = new Date().getTime - oodokei;
+            seikaisu_itirans[0][3] = stage_clear_time;
+            sentaku_aka(0);
+        }
+        mode1();
     }
     
     function batu() {
-        //if (isSeikai == true) return
-        x1 = Math.floor(kleft+kwidth/2);
-        y1 = Math.floor(ktop+kheight/2);
+        //x1 = Math.floor(kleft+kwidth/2);
+        //y1 = Math.floor(ktop+kheight/2);
         // Set the line style
-        ctx.strokeStyle = 'blue';
-        ctx.lineWidth = 10;
-        ctx.beginPath();
-        ctx.moveTo(kleft+100,ktop+100);
-        ctx.lineTo(kleft+300,ktop+300);
-        ctx.stroke();
+        //ctx.strokeStyle = 'blue';
+        //ctx.lineWidth = 10;
+        //ctx.beginPath();
+        //ctx.moveTo(kleft+100,ktop+100);
+        //ctx.lineTo(kleft+300,ktop+300);
+        //ctx.stroke();
+        ctx.fillStyle = 'blue';
+        ctx.fillText("◯", 40, 160);//
+
         // 止める
-        stime = new Date().getTime;
-        while (new Date().getTime - stime < 5000) {
+        //stime = new Date().getTime;
+        //while (new Date().getTime - stime < 5000) {
             // 何もしない
-        }
-        mode = 91;
-        isSeikai = false;
+        //}
         stoptimes = [];
         return;
     }
 
+    // 画面右の解答欄に四角を描く
     function sikaku_draw(sikakus){
         kaitouran_clear();
         sikakus.forEach(element => {
@@ -236,27 +271,22 @@
     // メニューを選択
     canvas.addEventListener("touchstart", function(e){ //<-touchstart
     if (mode < 0) {
-        ctx.fillText("2",10,10);
         yoko = 300;
         mode = 0;
         for (i=0;i<8;i++){
             if (100<e.pageX && e.pageX<100+300 && 100+50*i-30<e.pageY && e.pageY<100+50*i+10){
                 mode = i+1;
-                ctx.clearRect(200,10,20,20);
-                st=String(mode)+":"+String(e.pageY);
-                ctx.fillText(mode, 200, 60); //
+                sentaku_aka(mode);
             }
         } 
-        if (mode==1){
-            ctx.fillText(mode,20,20);
-            mode1();
-        }
+        if (mode==1){mode1();}
+        //if (mode==2){mode2();}
     }
-
+ 
+    // 同じcanvasを使っているので、すでにmode1の中ではこちらにくる。
     if (mode==1) {
-    // タッチ数を数える
+    // 画面右のタッチ数を数える
         e.preventDefault();
-        if (isSeikai == true) {return;}
         stoptimes.push(new Date() - stime);
         const touchPoints = e.touches;
         console.log(touchPoints);
@@ -268,27 +298,18 @@
             console.log("x1,y1=",x1,y1);
             if (kleft+50<x1 && x1<kleft+kwidth && 
                 ktop+50<y1 && y1<ktop+kheight){
-                if (mode==91){return} // 91は揃っているという意味
                 yubicnt += 1;
                 sikakus.push([x1,y1]);
             }
         }
         sikaku_draw(sikakus);
         redraw_sikaku_plus(sikakus);
-        // if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
-        //     isSeikai = true;
-        //     seikai();
-        // } 
-        // if (new Date() - stime>5000){
-        //     mode = 91;
-        //     batu();
-        // }
+
     }//if(move>0)
     },{passive: false});
 
     canvas.addEventListener("touchmove", function(e){
         e.preventDefault();
-        if (isSeikai == true) {return;}
         const touchPoints = e.touches;
         let yubicnt=0;
         sikakus = [];
@@ -297,25 +318,17 @@
             y1 = touchPoints[i].pageY;
             if (kleft+50<x1 && x1<kleft+kwidth && 
                 ktop+50<y1 && y1<ktop+kheight){
-                if (mode==91){return} 
                 yubicnt += 1;
                 sikakus.push([x1,y1]);
             }
         }
         sikaku_draw(sikakus);
         redraw_sikaku_plus(sikakus);
-        // if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
-        //     isSeikai = true;
-        //     seikai();
-        // } else {
-        //     batu();
-        // }
     
     },{passive: false});
 
     canvas.addEventListener("touchend", function(e) {
         e.preventDefault();
-        if (isSeikai == true) {return;}
         // 残りのタッチポイントから消去対象を特定
         const touches = e.changedTouches;
         const remainingTouches = [];
@@ -331,20 +344,19 @@
             y1 = element.clientY
             if (kleft+50<x1 && x1<kleft+kwidth && 
             ktop+50<y1 && y1<ktop+kheight){
-                if (mode==91){return} 
                 yubicnt += 1;
                 sikakus.push([x1,y1]);
             }
         });
         sikaku_draw(sikakus);
         redraw_sikaku_plus(sikakus);
-        // if (yubicnt==yubikotae && stoptimes.length==yubikotae) {
-        //     isSeikai = true;
-        //     seikai();
-        // } else {
-        //     batu();
-        // }
+
     },{passive: false});
+
+
+    // ----- main -----
+        // メニューを表示
+        sentaku_aka(0);
 
 
 </script>    
