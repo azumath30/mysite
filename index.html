@@ -222,7 +222,7 @@
         // 正解数を増やす
         seikaisu_itirans[0][1] += 1;
         //
-        if (seikaisu_itirans[0][1] >=seikaisu_itirans[0][2]) {
+        if (seikaisu_itirans[0][1] >= seikaisu_itirans[0][2]) {
             // 大時計計時
             stage_clear_time = new Date().getTime - oodokei;
             seikaisu_itirans[0][3] = stage_clear_time;
@@ -232,9 +232,9 @@
                 sentaku_aka(0);
             },3000);
         }
-        setTimeout(() => {
+        //setTimeout(() => {
             mode1();
-        }, 800);
+        //}, 800);
     }
     
     function batu() {
