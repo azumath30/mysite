@@ -70,6 +70,7 @@
     ctx.lineWidth = 1;
     // 矩形を描画 (x, y, 幅, 高さ)
     ctx.strokeRect(0, 0, canvas.width-30, canvas.height-30);    
+    ctx.fillStyle = 'black';
     // フォントの読み込み完了後に実行
     document.fonts.ready.then(() => {
         ctx.font = "8px 'sans-serif'";
@@ -126,7 +127,7 @@
 
         ctx.font = "96px";
         ctx.fillText("5  =",100,300);
-        ctx.fillText("+",450,300);
+        //ctx.fillText("+",450,300);
         for (i=0;i<leftn;i++){
             // 四角塗りつぶし
             ctx.fillStyle = 'skyblue';
@@ -226,6 +227,7 @@
         if (seikaisu_itirans[0][1]+1 >= seikaisu_itirans[0][2]) {
             // 大時計計時
             stage_clear_time = new Date().getTime - oodokei;
+            ctx.fillText(stage_clear_time, 100, 50);
             seikaisu_itirans[0][3] = stage_clear_time;
             mode = 0;
             setTimeout(()=>{
