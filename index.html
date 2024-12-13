@@ -170,8 +170,7 @@
         //ctx.font = "20px";
         //ctx.fillStyle = 'black';
 
-        // 解答欄をクリア
-        kaitouran_clear();        
+    
     }
     // 解答欄クリア
     function kaitouran_clear() {
@@ -229,6 +228,28 @@
             batu();
         }
     }
+
+    // mode2
+    function mode2gamen() { 
+        // 乱数の決定
+        leftn = Math.floor(Math.random()*4)+1;
+        console.log("leftn=",leftn);
+        yubikotae = 5-leftn; 
+        // 解答欄をクリア
+        kaitouran_clear(); 
+        ctx.clearRect(200,200,200,200);
+        ctx.font = "96px";
+        ctx.fillText(leftn,200,300);
+        ctx.fillText("+",300,300);
+        kosu = leftn + sikakus.length;
+        if (kosu == 5) {
+            setTimeout(() => {
+                seikai();    
+            }, 200);
+        } else {
+            batu();
+        }
+    }   
 
     function seikai() {
             //ctx.fillText("yubi:",40,100);//
