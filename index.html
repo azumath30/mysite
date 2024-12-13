@@ -359,7 +359,12 @@
                 mode1();
             }, 1000);
         }
-        //if (mode==2){mode2();}
+        if (mode==2){
+            sentaku_aka(mode);
+            setTimeout(() => {
+                mode2();
+            }, 1000);
+        }
     }
  
     // 同じcanvasを使っているので、すでにmode1の中ではこちらにくる。
