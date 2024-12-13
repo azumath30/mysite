@@ -175,6 +175,7 @@
         y1 = Math.floor(ktop+kheight/2);
         ctx.fillStyle = 'red';
         ctx.arc(x1, y1, 100, 0, Math.PI * 2);
+        ctx.fillText("◯",40,160);//
         // 止める
         stime = new Date().getTime;
         while (new Date().getTime - stime < 5000) {
