@@ -226,6 +226,7 @@
             stage_clear_time = new Date().getTime - oodokei;
             seikaisu_itirans[0][3] = stage_clear_time;
             sentaku_aka(0);
+            mode = 0;
         }
         mode1();
     }
@@ -276,7 +277,6 @@
         for (i=0;i<8;i++){
             if (100<e.pageX && e.pageX<100+300 && 100+50*i-30<e.pageY && e.pageY<100+50*i+10){
                 mode = i+1;
-                sentaku_aka(mode);
             }
         } 
         if (mode==1){mode1();}
