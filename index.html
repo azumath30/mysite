@@ -125,7 +125,6 @@
         ctx.fillText("５をつくる",400,100);
         // 乱数の決定
         leftn = Math.floor(Math.random()*4)+1;
-        console.log("leftn=",leftn);
         yubikotae = 5-leftn; 
 
         ctx.font = "96px";
@@ -157,7 +156,6 @@
         ctx.fillText("合わせて５をつくる足し算",200,100);
         // 乱数の決定
         leftn = Math.floor(Math.random()*4)+1;
-        console.log("leftn=",leftn);
         yubikotae = 5-leftn; 
         // 問題表示
         ctx.font = "96px";
@@ -185,9 +183,7 @@
             if (5<wa && wa<=10 && leftn1!=5 && leftn2!=1) {
                 break;
             }
-            
         }
-
         yubikotae = 5-leftn; 
         // 問題表示
         ctx.font = "96px";
@@ -213,7 +209,7 @@
 
         yubikotae = 10-leftn; 
         ctx.font = "96px";
-        ctx.fillText("10  =",200,300);
+        ctx.fillText("10  =",100,300);
         //ctx.fillText("+",450,300);
         for (i=0;i<leftn;i++){
             // 四角塗りつぶし
@@ -257,7 +253,7 @@
             ctx.fillText("5  =",100,300);
         }
         if (mode==4){
-            ctx.fillText("5  =",100,300);
+            ctx.fillText("10  =",100,300);
         }
         ctx.fillText("+",450,300);
         kosu = leftn + sikakus.length;
@@ -430,7 +426,7 @@
                 mode3();
             }
             if (mode==4) {
-                seikaisu_itirans[2][1] += 1;
+                seikaisu_itirans[3][1] += 1;
                 mode4();
             }
         }, 800);
