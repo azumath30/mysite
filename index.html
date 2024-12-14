@@ -172,8 +172,8 @@
         // タイトル
         ctx.font = "36px";
         ctx.fillStyle = 'black';
-        ctx.fillText("答えが６以上の足し算",200,100);
-        ctx.fillText("５を超えた分を押す",200,120);
+        //ctx.fillText("答えが６以上の足し算",200,100);
+        ctx.fillText("５を超えた分を押す",200,100);
 
         // 乱数の決定
         while (true) {
@@ -184,9 +184,10 @@
                 break;
             }
         }
-        yubikotae = 5-leftn; 
+        yubikotae = wa-5; 
         // 問題表示
         ctx.font = "96px";
+        ctx.fillStyle('black');
         ctx.fillText(leftn1,200,300);
         ctx.fillText("+",350,300);
         ctx.fillText(leftn2,400,300);
@@ -371,7 +372,7 @@
                 }
             }
             if (mode==3) {
-                if (sikakus.length = wa - 5) {
+                if (sikakus.length == wa - 5) {
                     honto_seikai();
                 } else {
                     batu();
