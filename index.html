@@ -173,6 +173,7 @@
             ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
         }
         //
+        ctx.fillStyle = 'balck';
         ctx.font = "96px";
         ctx.fillText(leftn,200,200);
         ctx.fillText("+",300,200);
@@ -346,9 +347,9 @@
         // 自分のタッチ回答を数字にしている
         ctx.font = "96px";
         ctx.fillStyle = 'black';
-        ctx.fillText(leftn,200,300);
-        ctx.fillText("+",300,300);
-        ctx.fillText(sikakus.length,400,300)
+        ctx.fillText(leftn,200,200);
+        ctx.fillText("+",300,200);
+        ctx.fillText(sikakus.length,400,200)
         kosu = leftn + sikakus.length;
         if (kosu == 5) {
             setTimeout(() => {
