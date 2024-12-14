@@ -188,7 +188,7 @@
         ctx.font = "36px";
         ctx.fillStyle = 'black';
         //ctx.fillText("答えが６以上の足し算",200,80);
-        ctx.fillText("５を超えた分を押す",200,80);
+        ctx.fillText("５といくつかを押す",200,80);
 
         // 乱数の決定
         while (true) {
@@ -203,10 +203,23 @@
         // 問題表示
         ctx.font = "96px";
         ctx.fillStyle = 'black';
-        ctx.fillText(leftn1,200,300);
-        ctx.fillText("+",350,300);
-        ctx.fillText(leftn2,400,300);
-        ctx.fillText("=",450,300);
+        ctx.fillText(leftn1,200,200);
+        ctx.fillText("+",250,200);
+        ctx.fillText(leftn2,300,200);
+        ctx.fillText("=",350,200);
+        for (i=0;i<5;i++){
+            // 四角塗りつぶし
+            ctx.fillStyle = 'skyblue';
+            xi = i % 5;
+            yi = Math.floor(i/5);
+            // 四角形
+            ctx.fillRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
+            // 四角縁取り
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
+        }
+
         // 解答欄をクリア -> 作成
         kaitouran_clear();
     }
@@ -362,14 +375,14 @@
     }   
     function mode3gamen(sikakus) {
         // 問題を消している
-        ctx.clearRect(200,200,250,200);
+        ctx.clearRect(150,150,350,250);
         // 自分のタッチ回答を数字にしている
         // 問題表示
         ctx.font = "96px";
-        ctx.fillText(leftn1,200,300);
-        ctx.fillText("+",350,300);
-        ctx.fillText(leftn2,400,300);
-        ctx.fillText("=",450,300);
+        ctx.fillText(leftn1,200,200);
+        ctx.fillText("+",350,200);
+        ctx.fillText(leftn2,400,200);
+        ctx.fillText("=",450,200);
         if (wa-5 == sikakus.length) {
             setTimeout(() => {
                 seikai();    
