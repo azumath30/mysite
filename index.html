@@ -338,8 +338,13 @@
         setTimeout(() => {
             ctx.clearRect(100,140,200,40);
             sikakus = [];
-            sikaku_draw(sikakus);
-            redraw_sikaku_plus(sikakus);
+            if(mode==1){
+                sikaku_draw(sikakus);
+                redraw_sikaku_plus(sikakus);
+            }
+            if(mode==2){
+                mode2gamen(sikakus);
+            }
         }, 1000);
     }
 
