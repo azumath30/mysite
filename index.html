@@ -302,11 +302,17 @@
             if (5<=i && i<10) {
                 ctx.fillStyle = 'pink';
             }
+            if (mode==1 && i<leftn) {
+                ctx.fillStyle = 'skyblue';
+            } else {
+                ctx.fillStyle = 'pink';
+            }
             if (mode==4 && i<leftn){
                 ctx.fillStyle = 'skyblue';                
             } else {
                 ctx.fillStyle = 'pink';
             }
+            
 
             xi = i % 5;
             yi = Math.floor(i/5);
