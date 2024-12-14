@@ -158,9 +158,24 @@
         leftn = Math.floor(Math.random()*4)+1;
         yubikotae = 5-leftn; 
         // 問題表示
+        ctx.clearRect(50,200,440,400);
+        ctx.fillStyle = 'black';
+        for (i=0;i<5;i++){
+            // 四角塗りつぶし
+                ctx.fillStyle = 'skyblue';
+            xi = i % 5;
+            yi = Math.floor(i/5);
+            // 四角形
+            ctx.fillRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
+            // 四角縁取り
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
+        }
+        //
         ctx.font = "96px";
-        ctx.fillText(leftn,200,300);
-        ctx.fillText("+",300,300);
+        ctx.fillText(leftn,200,200);
+        ctx.fillText("+",300,200);
         // 解答欄をクリア -> 作成
         kaitouran_clear();
     }
