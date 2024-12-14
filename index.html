@@ -151,7 +151,7 @@
         // タイトル
         ctx.font = "36px";
         ctx.fillStyle = 'black';
-        ctx.fillText("合わせて５をつくる足し算",300,100);
+        ctx.fillText("合わせて５をつくる足し算",200,100);
         // 乱数の決定
         leftn = Math.floor(Math.random()*4)+1;
         console.log("leftn=",leftn);
@@ -276,8 +276,9 @@
                 stage_clear_time = new Date().getTime() - oodokei;
                 //ctx.fillText(stage_clear_time, 100, 50);
                 seikaisu_itirans[0][3] = stage_clear_time;
+                seikaisu_itirans[0][1] += 1;
                 mode = 0;
-                ctx.fillText("ステージクリア！", 40, 180);
+                ctx.fillText("ステージクリア！", 400, 120);
                 setTimeout(()=>{
                     sentaku_aka(0);
                 },3000);
@@ -289,8 +290,9 @@
                 stage_clear_time = new Date().getTime() - oodokei;
                 //ctx.fillText(stage_clear_time, 100, 50);
                 seikaisu_itirans[1][3] = stage_clear_time;
+                seikaisu_itirans[1][1] += 1;
                 mode = 0;
-                ctx.fillText("ステージクリア！", 40, 180);
+                ctx.fillText("ステージクリア！", 400, 120);
                 setTimeout(()=>{
                     sentaku_aka(0);
                 },3000);
