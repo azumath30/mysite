@@ -197,6 +197,38 @@
         // 解答欄をクリア -> 作成
         kaitouran_clear();
     }
+    // ----- mode4 -----
+    function mode4() {
+        // 画面全体クリア・外枠
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeRect(0, 0, canvas.width-30, canvas.height-30);
+        // タイトル
+        ctx.font = "36px";
+        ctx.fillStyle = 'black';
+        ctx.fillText("あわせて10になる数",200,100);
+
+        // 乱数の決定
+        leftn = Math.floor(Math.random()*9)+1;
+
+        yubikotae = 10-leftn; 
+        ctx.font = "96px";
+        ctx.fillText("10  =",200,300);
+        //ctx.fillText("+",450,300);
+        for (i=0;i<leftn;i++){
+            // 四角塗りつぶし
+            ctx.fillStyle = 'skyblue'; 
+            xi = i % 5;
+            yi = Math.floor(i/5);
+            // 四角形
+            ctx.fillRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
+            // 四角縁取り
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
+        }
+        // 解答欄をクリア -> 作成
+        kaitouran_clear();
+    }
     
     // 解答欄クリア
     function kaitouran_clear() {
@@ -220,7 +252,12 @@
         ctx.clearRect(50,200,440,400);
         ctx.font = "96px";
         ctx.fillStyle = 'black';
-        ctx.fillText("5  =",100,300);
+        if (mode==1){
+            ctx.fillText("5  =",100,300);
+        }
+        if (mode==4){
+            ctx.fillText("5  =",100,300);
+        }
         ctx.fillText("+",450,300);
         kosu = leftn + sikakus.length;
         if (mode==3) {
@@ -270,7 +307,15 @@
                 batu();
             }
         }
-
+        if (mode==4) {
+            if (kosu == 10) {
+                setTimeout(() => {
+                    seikai();    
+                }, 200);
+            } else {
+                batu();
+            }
+        }
     }
 
     // mode2問題が変わってしまうので、しかたなくgamenを作っている
@@ -335,7 +380,13 @@
                     batu();
                 }
             }
-
+            if (mode==4){
+                if (sikakus.length == 10-leftn){
+                    honto_seikai();
+                } else {
+                    batu();
+                }
+            }
     }
 
     function honto_seikai() {
@@ -348,7 +399,7 @@
         // 正解音
         correct.play();
         // ５問以上正解になったら時間を記録して、クリア表示
-        if (mode==1){
+        if (mode>=1){
             if (seikaisu_itirans[mode-1][1]+1 >= seikaisu_itirans[mode-1][2]) {
                 // 大時計計時
                 stage_clear_time = new Date().getTime() - oodokei;
@@ -377,7 +428,10 @@
                 seikaisu_itirans[2][1] += 1;
                 mode3();
             }
-
+            if (mode==4) {
+                seikaisu_itirans[2][1] += 1;
+                mode4();
+            }
         }, 800);
     }
     
@@ -405,7 +459,7 @@
         setTimeout(() => {
             ctx.clearRect(100,140,200,40);
             sikakus = [];
-            if(mode==1){
+            if(mode==1 || mode==4){
                 sikaku_draw(sikakus);
                 redraw_sikaku_plus(sikakus);
             }
@@ -455,6 +509,18 @@
                 mode2();
             }, 1000);
         }
+        if (mode==3){
+            sentaku_aka(mode);
+            setTimeout(() => {
+                mode3();
+            }, 1000);
+        }
+        if (mode==4){
+            sentaku_aka(mode);
+            setTimeout(() => {
+                mode4();
+            }, 1000);
+        }
     }
     
     // 同じcanvasを使っているので、すでにmode1の中ではこちらにくる。
@@ -476,12 +542,15 @@
         }    
         //----- mode -----
     if (hajimari != 1) {
-        if (mode==1) {
+        if (mode==1 || mode==4) {
             sikaku_draw(sikakus);
             redraw_sikaku_plus(sikakus);
         }
         if (mode == 2) {
             mode2gamen(sikakus);
+        }
+        if (mode == 3) {
+            mode3gamen(sikakus);
         }
     } else {
         hajimari = 0;
