@@ -295,6 +295,8 @@
         //ctx.fillText("kosu:",40,60)//
         //ctx.fillText(kosu,90,60);//
         for (i=0;i<kosu;i++){
+            xi = i % 5;
+            yi = Math.floor(i/5);
             // 四角塗りつぶし
             if (i<5) { //０始まりなので５
                 ctx.fillStyle = 'skyblue';
@@ -304,8 +306,10 @@
             }
             if (mode==1 && i<leftn) {
                 ctx.fillStyle = 'skyblue';
+                ctx.fillText("b",rectl+rectw*xi, rectt+(rectw+20)*yi);
             } else {
                 ctx.fillStyle = 'pink';
+                ctx.fillText("p",rectl+rectw*xi, rectt+(rectw+20)*yi);
             }
             if (mode==4 && i<leftn){
                 ctx.fillStyle = 'skyblue';                
@@ -313,9 +317,6 @@
                 ctx.fillStyle = 'pink';
             }
             
-
-            xi = i % 5;
-            yi = Math.floor(i/5);
             // 四角形
             ctx.fillRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
             // 四角縁取り
