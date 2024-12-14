@@ -369,6 +369,7 @@
         for (i=0;i<8;i++){
             if (100<e.pageX && e.pageX<100+300 && 100+50*i-30<e.pageY && e.pageY<100+50*i+10){
                 mode = i+1;
+                hajimari = 1;
             }
         } 
         if (mode==1){
@@ -402,13 +403,17 @@
                 sikakus.push([x1,y1]);
             }
         }    
-    //----- mode -----
-    if (mode==1) {
-        sikaku_draw(sikakus);
-        redraw_sikaku_plus(sikakus);
-    }
-    if (mode==2) {
-        mode2gamen(sikakus);
+        //----- mode -----
+    if (hajimari != 1) {
+        if (mode==1) {
+            sikaku_draw(sikakus);
+            redraw_sikaku_plus(sikakus);
+        }
+        if (mode == 2) {
+            mode2gamen(sikakus);
+        }
+    
+        hajimari = 0;
     }
 
     },{passive: false});
