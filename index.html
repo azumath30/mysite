@@ -175,16 +175,17 @@
         ctx.font = "36px";
         ctx.fillStyle = 'black';
         ctx.fillText("答えが６以上の足し算",200,100);
-        ctx.fillText("５と◯を答える",200,120);
+        ctx.fillText("５を超えた分を押す",200,120);
 
         // 乱数の決定
         while (true) {
             leftn1 = Math.floor(Math.random()*9)+1;
             leftn2 = Math.floor(Math.random()*9)+1;
-            if (leftn1+leftn2<=10 && leftn1!=5 && leftn2!=1) {
+            wa = leftn1+leftn2;
+            if (5<wa && wa<=10 && leftn1!=5 && leftn2!=1) {
                 break;
             }
-            wa = leftn1+leftn2;
+            
         }
 
         yubikotae = 5-leftn; 
