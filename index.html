@@ -304,19 +304,20 @@
             if (5<=i && i<10) {
                 ctx.fillStyle = 'pink';
             }
-            if (mode==1 && i<leftn) {
-                ctx.fillStyle = 'skyblue';
-                ctx.fillText("b",rectl+rectw*xi, rectt+(rectw+20)*yi);
-            } else {
-                ctx.fillStyle = 'pink';
-                ctx.fillText("p",rectl+rectw*xi, rectt+(rectw+20)*yi);
+            if (mode==1) {
+                if (mode==1 && i<leftn) {
+                    ctx.fillStyle = 'skyblue';
+                } else {
+                    ctx.fillStyle = 'pink';
+                }
             }
-            if (mode==4 && i<leftn){
-                ctx.fillStyle = 'skyblue';                
-            } else {
-                ctx.fillStyle = 'pink';
+            if (mode==4){
+                if (i<leftn){
+                    ctx.fillStyle = 'skyblue';                
+                } else {
+                    ctx.fillStyle = 'pink';
+                }
             }
-            
             // 四角形
             ctx.fillRect(rectl+rectw*xi, rectt+(rectw+20)*yi, rectw, rectw);
             // 四角縁取り
