@@ -222,13 +222,7 @@
     }
 
     // mode2
-    function mode2gamen(sikakus) { 
-        // 乱数の決定
-        leftn = Math.floor(Math.random()*4)+1;
-        console.log("leftn=",leftn);
-        yubikotae = 5-leftn; 
-        // 解答欄をクリア
-        kaitouran_clear(); 
+    function mode2gamen(sikakus) {
         ctx.clearRect(200,200,250,200);
         ctx.font = "96px";
         ctx.fillText(leftn,200,300);
@@ -242,6 +236,8 @@
         } else {
             batu();
         }
+        // 解答欄をクリア
+        //kaitouran_clear(); 
     }   
 
     function seikai() {
