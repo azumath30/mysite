@@ -540,16 +540,18 @@
                 sikakus.push([x1,y1]);
             }
         }    
-        //----- mode -----
+    //----- mode -----
     if (hajimari != 1) {
         if (mode==1 || mode==4) {
             sikaku_draw(sikakus);
             redraw_sikaku_plus(sikakus);
         }
         if (mode == 2) {
+            sikaku_draw(sikakus);
             mode2gamen(sikakus);
         }
         if (mode == 3) {
+            sikaku_draw(sikakus);
             mode3gamen(sikakus);
         }
     } else {
