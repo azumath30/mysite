@@ -371,13 +371,15 @@
         ctx.fillText("+",300,200);
         ctx.fillText(sikakus.length,400,200)
         kosu = leftn + sikakus.length;
-        if (kosu == 5) {
-            setTimeout(() => {
-                seikai();    
-            }, 200);
-        } else {
-            batu();
-        }
+
+        redraw_sikaku_plus(sikakus);
+        // if (kosu == 5) {
+        //     setTimeout(() => {
+        //         seikai();    
+        //     }, 200);
+        // } else {
+        //     batu();
+        // }
         // 解答欄をクリア
         //kaitouran_clear(); 
     }   
